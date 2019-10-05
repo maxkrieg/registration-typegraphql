@@ -1,0 +1,34 @@
+version: '3.7'
+
+x-postgres-creds: &postgres-creds
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_DB: personal-site-db
+
+services:
+  # api:
+  #   build:
+  #     context: ./api
+  #   environment:
+  #     PORT: 80
+  #     POSTGRES_HOST: postgres
+  #     <<: *postgres-creds
+  #   ports:
+  #     - 4000:4000
+  #   depends_on:
+  #     - postgres
+  #   volumes:
+  #     - ./api/src:/app/src
+
+  postgres:
+    image: postgres:10.7-alpine
+    environment:
+      <<: *postgres-creds
+    ports:
+      - 5432:5432
+    restart: 'always'
+    volumes:
+      - personal_site_postgres_db:/var/lib/postgresql/data
+
+volumes:
+  personal_site_postgres_db:
