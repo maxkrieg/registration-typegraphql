@@ -6,19 +6,20 @@ x-postgres-creds: &postgres-creds
   POSTGRES_DB: personal-site-db
 
 services:
-  # api:
-  #   build:
-  #     context: ./api
-  #   environment:
-  #     PORT: 80
-  #     POSTGRES_HOST: postgres
-  #     <<: *postgres-creds
-  #   ports:
-  #     - 4000:4000
-  #   depends_on:
-  #     - postgres
-  #   volumes:
-  #     - ./api/src:/app/src
+  api:
+    build:
+      context: ./api
+    command: ['npm', 'start']
+    environment:
+      PORT: 4000
+      POSTGRES_HOST: postgres
+      <<: *postgres-creds
+    ports:
+      - 4000:4000
+    depends_on:
+      - postgres
+    volumes:
+      - ./api/src:/app/src
 
   postgres:
     image: postgres:10.7-alpine
