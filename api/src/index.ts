@@ -11,12 +11,13 @@ import { MyContext } from './types/MyContext'
 import redis from './redis'
 import { RegisterResolver } from './modules/user/Register'
 import { LoginResolver } from './modules/user/Login'
+import { UserResolver } from './modules/user/User'
 
 const main = async () => {
   await createConnection()
 
   const schema = await buildSchema({
-    resolvers: [RegisterResolver, LoginResolver],
+    resolvers: [UserResolver, RegisterResolver, LoginResolver],
   })
   const apolloServer = new ApolloServer({
     schema,

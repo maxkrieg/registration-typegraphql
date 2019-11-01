@@ -3,12 +3,12 @@ import { User } from '../../entities/User'
 import { MyContext } from '../../types/MyContext'
 
 @Resolver()
-export class GetUserResolver {
+export class UserResolver {
   @Query(() => User, { nullable: true })
-  async getUser(@Ctx() ctx: MyContext) {
-    if (!ctx.req.session!.userId) {
-      return null
+  async user(@Ctx() ctx: MyContext): Promise<User | null | undefined> {
+    if (ctx.req.session!.userId) {
+      return User.findOne(ctx.req.session!.userId)
     }
-    return 'Hello world'
+    return null
   }
 }
