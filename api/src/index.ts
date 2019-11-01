@@ -6,6 +6,7 @@ import connectRedis from 'connect-redis'
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 import { createConnection } from 'typeorm'
+import { MyContext } from './types/MyContext'
 
 import redis from './redis'
 import { RegisterResolver } from './modules/user/Register'
@@ -19,7 +20,7 @@ const main = async () => {
   })
   const apolloServer = new ApolloServer({
     schema,
-    context: ({ req }: any) => ({ req }),
+    context: ({ req }: MyContext) => ({ req }),
   })
 
   const app = Express()
