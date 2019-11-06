@@ -12,14 +12,21 @@ import redis from './redis'
 import { RegisterResolver } from './modules/user/Register'
 import { LoginResolver } from './modules/user/Login'
 import { UserResolver } from './modules/user/User'
+import { logger } from './middleware/logger'
+import { isAuth } from './middleware/isAuth'
+
+const PORT = process.env.PORT
+const PATH = '/graphql'
 
 const main = async () => {
   await createConnection()
 
   const schema = await buildSchema({
     resolvers: [UserResolver, RegisterResolver, LoginResolver],
+    globalMiddlewares: [logger, isAuth],
   })
-  const apolloServer = new ApolloServer({
+
+  const server = new ApolloServer({
     schema,
     context: ({ req }: MyContext) => ({ req }),
   })
@@ -49,11 +56,10 @@ const main = async () => {
     }),
   )
 
-  apolloServer.applyMiddleware({ app })
+  server.applyMiddleware({ app, path: PATH })
 
-  const PORT = process.env.PORT
   app.listen(PORT, () => {
-    console.log(`server start localhost:${PORT}/graphql`)
+    console.log(`🚀 Server start at http://localhost:${PORT}${server.graphqlPath} 🚀`)
   })
 }
 
