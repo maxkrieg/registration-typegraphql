@@ -41,5 +41,18 @@ services:
     volumes:
       - ./redis-data:/data
 
+  ui:
+    build:
+      context: ./ui
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
+    volumes:
+      - ./ui/src:/app/src
+      - ./ui/public:/app/public
+
 volumes:
   personal_site_postgres_db:
