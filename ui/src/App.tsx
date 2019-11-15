@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import Image from 'react-bootstrap/Image'
 
 const App: React.FC = () => {
   const sections = [
@@ -36,20 +37,21 @@ const App: React.FC = () => {
   return (
     <Container fluid style={{ padding: '0' }}>
       <Row>
-        <Col>
-          <div style={{ height: '200px', backgroundColor: 'lightblue' }}>
-            Cool stuff with picture here
-          </div>
-        </Col>
+        <Image src="https://via.placeholder.com/1400x300" style={{ width: '100%' }} />
       </Row>
-      <Navbar expand="lg" sticky="top" bg="light" variant="light">
-        <Navbar.Brand>MAX KRIEG</Navbar.Brand>
+      <Navbar expand="sm" sticky="top" bg="light" variant="light">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Brand href={window.location.href}>MAX KRIEG</Navbar.Brand>
         <Navbar.Collapse>
           <Nav>
-            {sections.map(section => (
-              <Nav.Link href={`#${section.title.toLowerCase()}`}>{section.title}</Nav.Link>
-            ))}
+            {sections.map((section, i) => {
+              const navLink = (
+                <Nav.Link key={i} href={`#${section.title.toLowerCase()}`}>
+                  {section.title}
+                </Nav.Link>
+              )
+              return navLink
+            })}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
