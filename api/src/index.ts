@@ -12,6 +12,7 @@ import redis from './redis'
 import { RegisterResolver } from './modules/user/Register'
 import { LoginResolver } from './modules/user/Login'
 import { UserResolver } from './modules/user/User'
+import { ConfirmUserResolver } from './modules/user/ConfirmUserResolver'
 import { logger } from './middleware/logger'
 import { isAuth } from './middleware/isAuth'
 
@@ -22,7 +23,7 @@ const main = async () => {
   await createConnection()
 
   const schema = await buildSchema({
-    resolvers: [UserResolver, RegisterResolver, LoginResolver],
+    resolvers: [UserResolver, RegisterResolver, LoginResolver, ConfirmUserResolver],
     globalMiddlewares: [logger, isAuth],
   })
 
