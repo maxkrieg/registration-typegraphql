@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './css/Register.css'
 import { RouteComponentProps, Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
@@ -11,6 +11,17 @@ const Register: React.FC<RouteComponentProps> = props => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [isPasswordMatch, setPasswordMatch] = useState(false)
+
+  useEffect(() => {
+    if (!password || !confirmPassword) return
+
+    if (password === confirmPassword) {
+      setPasswordMatch(true)
+    } else if (password !== confirmPassword) {
+      setPasswordMatch(false)
+    }
+  }, [password, confirmPassword])
 
   return (
     <Container className="register_container">
@@ -35,7 +46,7 @@ const Register: React.FC<RouteComponentProps> = props => {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder="Enter password"
                 value={password}
                 onChange={(e: any) => setPassword(e.target.value)}
               />
@@ -44,10 +55,14 @@ const Register: React.FC<RouteComponentProps> = props => {
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder="Reenter password"
                 value={confirmPassword}
                 onChange={(e: any) => setConfirmPassword(e.target.value)}
+                isInvalid={confirmPassword && !isPasswordMatch ? true : false}
               />
+              <Form.Text className="register_no-password-match">
+                {confirmPassword && !isPasswordMatch && 'Passwords must match'}
+              </Form.Text>
             </Form.Group>
             <Button variant="primary" type="submit" onClick={() => alert(email)}>
               Register

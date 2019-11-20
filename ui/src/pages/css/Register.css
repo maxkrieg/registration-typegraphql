@@ -2,6 +2,11 @@
   padding-top: 20px;
 }
 
+.register_no-password-match {
+  color: #de3636;
+  height: 12px;
+}
+
 .register_login-cta-group {
   text-align: center;
   margin-top: 20px;
