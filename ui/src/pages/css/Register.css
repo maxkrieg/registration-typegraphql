@@ -1,0 +1,13 @@
+.register_container {
+  padding-top: 20px;
+}
+
+.register_login-cta-group {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register_login-link-icon {
+  margin-left: 5px;
+  vertical-align: text-bottom;
+}

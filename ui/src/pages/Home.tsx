@@ -8,13 +8,13 @@ import { sections } from '../content/home'
 
 const Home: React.FC = () => {
   return (
-    <Container fluid className="home-container">
+    <Container fluid className="home_container">
       <Row>
         <Image src="https://via.placeholder.com/1400x300" style={{ width: '100%' }} />
       </Row>
       {sections.map(({ title, description }) => (
         <Row id={title} key={title}>
-          <Container fluid className="home-section-container">
+          <Container fluid className="home_section-container">
             <Row>
               <Col>
                 <h2>{title}</h2>
