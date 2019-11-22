@@ -13,8 +13,7 @@ import { RegisterResolver } from './modules/user/Register'
 import { LoginResolver } from './modules/user/Login'
 import { UserResolver } from './modules/user/User'
 import { ConfirmUserResolver } from './modules/user/ConfirmUserResolver'
-import { logger } from './middleware/logger'
-import { isAuth } from './middleware/isAuth'
+import { requestLogger } from './middleware/requestLogger'
 
 const PORT = process.env.PORT
 const PATH = '/graphql'
@@ -24,7 +23,7 @@ const main = async () => {
 
   const schema = await buildSchema({
     resolvers: [UserResolver, RegisterResolver, LoginResolver, ConfirmUserResolver],
-    globalMiddlewares: [logger, isAuth],
+    globalMiddlewares: [requestLogger],
   })
 
   const server = new ApolloServer({
@@ -37,7 +36,7 @@ const main = async () => {
   app.use(
     cors({
       credentials: true,
-      origin: 'https://localhost:3000',
+      origin: 'http://localhost:3000',
     }),
   )
 

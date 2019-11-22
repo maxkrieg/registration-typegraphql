@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
 
-interface RegisterInput {
+type RegisterInput = {
   firstName: string
   lastName: string
   email: string
@@ -62,17 +62,20 @@ const Register: React.FC<RouteComponentProps> = props => {
     }
   }
 
-  const handleSubmitClick = () => {
+  const handleSubmitClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault()
     if (!firstName || !lastName || !email || !password || !confirmPassword || !isPasswordMatch) {
       setFormSubmissionError(true)
       return
     }
     submitRegistration({
       variables: {
-        firstName,
-        lastName,
-        email,
-        password,
+        data: {
+          firstName,
+          lastName,
+          email,
+          password,
+        },
       },
     })
   }

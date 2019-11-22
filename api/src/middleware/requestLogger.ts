@@ -1,10 +1,7 @@
 import { MiddlewareFn } from 'type-graphql'
+import { nowISOTimestamp } from './../utils/date'
 
-const nowISOTimestamp = (dt: number) => {
-  return new Date(dt).toISOString()
-}
-
-export const logger: MiddlewareFn = async ({ info }, next) => {
+export const requestLogger: MiddlewareFn = async ({ info }, next) => {
   const start = Date.now()
   const resolverMethod = `${info.parentType.name}.${info.fieldName}`
   console.log(' ')
