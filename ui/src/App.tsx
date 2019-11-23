@@ -1,10 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+import User from './pages/User'
 import { sections } from './content/home'
 
 const App: React.FC = () => {
@@ -26,6 +28,7 @@ const App: React.FC = () => {
       <Route path="/" exact component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
+      <Route path="/user" component={User} />
     </Router>
   )
 }

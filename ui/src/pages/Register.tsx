@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from 'react'
 import './css/Register.css'
-import { RouteComponentProps, Link } from 'react-router-dom'
+import { RouteComponentProps, Link, Redirect } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -9,15 +9,8 @@ import Button from 'react-bootstrap/Button'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
 
-type RegisterInput = {
-  firstName: string
-  lastName: string
-  email: string
-  password: string
-}
-
 const registerUser = gql`
-  mutation registerUser($data: RegisterInput) {
+  mutation registerUser($data: RegisterInput!) {
     register(data: $data) {
       id
       firstName
@@ -37,6 +30,7 @@ const Register: React.FC<RouteComponentProps> = props => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [isPasswordMatch, setPasswordMatch] = useState(false)
   const [formSubmissionError, setFormSubmissionError] = useState(false)
+  const [isRegistered, setRegistrationStatus] = useState(false)
 
   useEffect(() => {
     if (!password || !confirmPassword) return
@@ -51,6 +45,7 @@ const Register: React.FC<RouteComponentProps> = props => {
   const [submitRegistration] = useMutation(registerUser, {
     onCompleted: data => {
       console.log('success', data)
+      setRegistrationStatus(true)
     },
   })
 
@@ -79,6 +74,8 @@ const Register: React.FC<RouteComponentProps> = props => {
       },
     })
   }
+
+  if (isRegistered) return <Redirect to="/user" />
 
   return (
     <Container className="register_container">
