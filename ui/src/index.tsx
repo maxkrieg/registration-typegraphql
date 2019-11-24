@@ -10,6 +10,13 @@ import * as serviceWorker from './serviceWorker'
 const renderApp = () => {
   const client = new ApolloClient({
     uri: 'http://localhost:4000/graphql',
+    credentials: 'include',
+    fetchOptions: {
+      credentials: 'include',
+      fetchOptions: {
+        mode: 'no-cors',
+      },
+    },
     resolvers: {},
   })
   ReactDOM.render(

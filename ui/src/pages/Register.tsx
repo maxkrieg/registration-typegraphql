@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from 'react'
 import './css/Register.css'
-import { RouteComponentProps, Link, Redirect } from 'react-router-dom'
+import { RouteComponentProps, Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -30,7 +30,6 @@ const Register: React.FC<RouteComponentProps> = props => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [isPasswordMatch, setPasswordMatch] = useState(false)
   const [formSubmissionError, setFormSubmissionError] = useState(false)
-  const [isRegistered, setRegistrationStatus] = useState(false)
 
   useEffect(() => {
     if (!password || !confirmPassword) return
@@ -43,10 +42,7 @@ const Register: React.FC<RouteComponentProps> = props => {
   }, [password, confirmPassword])
 
   const [submitRegistration] = useMutation(registerUser, {
-    onCompleted: data => {
-      console.log('success', data)
-      setRegistrationStatus(true)
-    },
+    onCompleted: _ => props.history.push('/user'),
   })
 
   const createChangeHandler = (stateChangeHandler: React.Dispatch<React.SetStateAction<any>>) => {
@@ -74,8 +70,6 @@ const Register: React.FC<RouteComponentProps> = props => {
       },
     })
   }
-
-  if (isRegistered) return <Redirect to="/user" />
 
   return (
     <Container className="register_container">

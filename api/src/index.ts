@@ -14,6 +14,7 @@ import { LoginResolver } from './modules/user/Login'
 import { UserResolver } from './modules/user/User'
 import { ConfirmUserResolver } from './modules/user/ConfirmUserResolver'
 import { requestLogger } from './middleware/requestLogger'
+import { ErrorInterceptor } from './middleware/errors'
 
 const PORT = process.env.PORT
 const PATH = '/graphql'
@@ -23,7 +24,7 @@ const main = async () => {
 
   const schema = await buildSchema({
     resolvers: [UserResolver, RegisterResolver, LoginResolver, ConfirmUserResolver],
-    globalMiddlewares: [requestLogger],
+    globalMiddlewares: [ErrorInterceptor, requestLogger],
   })
 
   const server = new ApolloServer({
@@ -56,7 +57,14 @@ const main = async () => {
     }),
   )
 
-  server.applyMiddleware({ app, path: PATH })
+  server.applyMiddleware({
+    app,
+    path: PATH,
+    cors: {
+      origin: true,
+      allowedHeaders: ['Authorization', 'Content-Type', 'http://localhost:3000'],
+    },
+  })
 
   app.listen(PORT, () => {
     console.log(`🚀 Server start at http://localhost:${PORT}${server.graphqlPath} 🚀`)
