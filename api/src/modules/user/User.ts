@@ -7,10 +7,11 @@ import { MyContext } from '../../types/MyContext'
 export class UserResolver {
   @Query(() => User, { nullable: true })
   @UseMiddleware(isAuth)
-  async user(@Ctx() ctx: MyContext): Promise<User | null | undefined> {
+  async user(@Ctx() ctx: MyContext): Promise<User | null> {
+    let user
     if (ctx.req.session!.userId) {
-      return User.findOne(ctx.req.session!.userId)
+      user = await User.findOne(ctx.req.session!.userId)
     }
-    return null
+    return user || null
   }
 }
