@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import User from './pages/User'
+import EmailConfirmed from './pages/EmailConfirmed'
 import { sections } from './content/home'
 
 const App: React.FC = () => {
@@ -25,10 +26,13 @@ const App: React.FC = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Route path="/" exact component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
-      <Route path="/user" component={User} />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/user" exact component={User} />
+        <Route path="/user/confirm/:token" exact component={EmailConfirmed} />
+      </Switch>
     </Router>
   )
 }
