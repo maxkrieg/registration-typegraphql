@@ -7,9 +7,7 @@ WORKDIR /app
 
 COPY  package*.json ./
 
-RUN npm config set @pluralsight:registry https://repository.vnerd.com/artifactory/api/npm/npm-pluralsight/
-
-RUN npm i
+RUN npm install
 
 COPY . .
 
