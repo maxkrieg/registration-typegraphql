@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Spinner from 'react-bootstrap/Spinner'
 import ListGroup from 'react-bootstrap/ListGroup'
+import Alert from 'react-bootstrap/Alert'
 
 const userQuery = gql`
   query getUser {
@@ -25,7 +26,7 @@ const userQuery = gql`
 const User: React.FC<RouteComponentProps> = props => {
   const { loading, data, error } = useQuery<{ user: UserEntity }>(userQuery)
   if (error) {
-    return <div>Error loading user info</div>
+    return <Alert variant="danger">Error loading user info</Alert>
   }
   let content
   if (!data || loading) {
