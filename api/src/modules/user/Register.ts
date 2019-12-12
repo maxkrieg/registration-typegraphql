@@ -1,9 +1,11 @@
-import { Resolver, Query, Mutation, Arg, Ctx } from 'type-graphql'
+import { Resolver, Query, Mutation, Arg, Ctx, UseMiddleware } from 'type-graphql'
 import bcrypt from 'bcryptjs'
 import { User } from '../../entities/User'
 import { RegisterInput } from './register/RegisterInput'
+import { ResendEmailInput } from './register/ResendEmailInput'
 import { sendConfirmationEmail } from '../utils/email'
 import { MyContext } from '../../types/MyContext'
+import { isAuth } from '../../middleware/isAuth'
 
 @Resolver()
 export class RegisterResolver {
@@ -27,5 +29,12 @@ export class RegisterResolver {
     await sendConfirmationEmail(user.id, user.email)
     ctx.req.session!.userId = user.id
     return user
+  }
+
+  @Mutation(() => Boolean)
+  @UseMiddleware(isAuth)
+  async resendConfirmationEmail(@Arg('data') { id, email }: ResendEmailInput): Promise<Boolean> {
+    await sendConfirmationEmail(id, email)
+    return true
   }
 }

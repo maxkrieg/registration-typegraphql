@@ -12,12 +12,17 @@ export type Scalars = {
 export type Mutation = {
   __typename?: 'Mutation'
   register: User
+  resendConfirmationEmail: Scalars['Boolean']
   login?: Maybe<User>
   confirmUser: Scalars['Boolean']
 }
 
 export type MutationRegisterArgs = {
   data: RegisterInput
+}
+
+export type MutationResendConfirmationEmailArgs = {
+  data: ResendEmailInput
 }
 
 export type MutationLoginArgs = {
@@ -42,11 +47,17 @@ export type RegisterInput = {
   password: Scalars['String']
 }
 
+export type ResendEmailInput = {
+  id: Scalars['ID']
+  email: Scalars['String']
+}
+
 export type User = {
   __typename?: 'User'
   id: Scalars['ID']
   firstName: Scalars['String']
   lastName: Scalars['String']
   email: Scalars['String']
+  confirmed: Scalars['Boolean']
   fullName: Scalars['String']
 }
