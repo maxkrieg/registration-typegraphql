@@ -2,3 +2,8 @@
   margin: 16px 0;
   text-align: center;
 }
+
+.user_confirm-email-alert-text {
+  vertical-align: middle;
+  margin-right: 12px;
+}
