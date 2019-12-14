@@ -9,7 +9,7 @@ const confirmUserMutation = gql`
   }
 `
 
-const EmailConfirmed: React.FC<RouteComponentProps> = props => {
+const EmailConfirmedPage: React.FC<RouteComponentProps> = props => {
   const { token } = useParams()
   const [isConfirmed, setConfirmed] = useState(false)
 
@@ -31,4 +31,4 @@ const EmailConfirmed: React.FC<RouteComponentProps> = props => {
   )
 }
 
-export default EmailConfirmed
+export default EmailConfirmedPage
