@@ -12,25 +12,6 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 
-const userQuery = gql`
-  query getUser {
-    user {
-      id
-      firstName
-      lastName
-      fullName
-      email
-      confirmed
-    }
-  }
-`
-
-const RESEND_CONFIRMATION_EMAIL = gql`
-  mutation ResendConfirmationEmail($data: ResendEmailInput!) {
-    resendConfirmationEmail(data: $data)
-  }
-`
-
 interface UserPageWrapperProps {
   children: ReactNode
 }
@@ -48,26 +29,51 @@ const UserPageWrapper: React.FC<UserPageWrapperProps> = ({ children }) => {
   )
 }
 
-const EMAIL_NOT_SENT = 'not sent'
-const EMAIL_SENT = 'sent'
-const EMAIL_FAILED = 'failed'
+const GET_USER_INFO = gql`
+  query GetUserInfo {
+    user {
+      id
+      firstName
+      lastName
+      fullName
+      email
+      confirmed
+    }
+  }
+`
+
+const RESEND_CONFIRMATION_EMAIL = gql`
+  mutation ResendConfirmationEmail($data: ResendEmailInput!) {
+    resendConfirmationEmail(data: $data)
+  }
+`
+
+// const EMAIL_NOT_SENT = 'not sent'
+// const EMAIL_SENT = 'sent'
+// const EMAIL_FAILED = 'failed'
+
+const emailStates = {
+  EMAIL_NOT_SENT: 'not sent',
+  EMAIL_SENT: 'sent',
+  EMAIL_FAILED: 'failed',
+}
 
 const UserPage: React.FC<RouteComponentProps> = props => {
   const { loading: userQueryLoading, data: userData, error: userQueryError } = useQuery<{
     user: UserEntity
-  }>(userQuery)
+  }>(GET_USER_INFO)
 
-  const [emailStatus, setEmailStatus] = useState(EMAIL_NOT_SENT)
+  const [emailState, setEmailState] = useState(emailStates.EMAIL_NOT_SENT)
 
   const [resendEmail, { loading: resendEmailLoading }] = useMutation(RESEND_CONFIRMATION_EMAIL, {
     onCompleted: responseData => {
       if (responseData.resendConfirmationEmail) {
-        setEmailStatus(EMAIL_SENT)
+        setEmailState(emailStates.EMAIL_SENT)
       } else {
-        setEmailStatus(EMAIL_FAILED)
+        setEmailState(emailStates.EMAIL_FAILED)
       }
     },
-    onError: _ => setEmailStatus(EMAIL_FAILED),
+    onError: _ => setEmailState(emailStates.EMAIL_FAILED),
   })
 
   if (userQueryError) {
@@ -90,15 +96,20 @@ const UserPage: React.FC<RouteComponentProps> = props => {
 
   const resendEmailButtonText = () => {
     if (resendEmailLoading) {
-      return 'Sending...'
+      return (
+        <>
+          <Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" />
+          Sending...
+        </>
+      )
     }
 
     let text
-    switch (emailStatus) {
-      case EMAIL_SENT:
+    switch (emailState) {
+      case emailStates.EMAIL_SENT:
         text = 'Email sent'
         break
-      case EMAIL_FAILED:
+      case emailStates.EMAIL_FAILED:
         text = 'Error sending email'
         break
       default:
@@ -115,8 +126,8 @@ const UserPage: React.FC<RouteComponentProps> = props => {
             You still need to confirm your email.
           </span>
           <Button
-            variant={emailStatus === EMAIL_FAILED ? 'danger' : 'primary'}
-            disabled={emailStatus !== EMAIL_NOT_SENT}
+            variant={emailState === emailStates.EMAIL_FAILED ? 'danger' : 'primary'}
+            disabled={emailState !== emailStates.EMAIL_NOT_SENT}
             onClick={() => {
               resendEmail({
                 variables: { data: { id: parseInt(userData.user.id), email: userData.user.email } },
