@@ -120,9 +120,7 @@ const UserPage: React.FC<RouteComponentProps> = props => {
     <UserPageWrapper>
       {!userData.user.confirmed && (
         <Alert variant="warning" style={{ textAlign: 'center' }}>
-          <span className="user_confirm-email-alert-text">
-            You still need to confirm your email.
-          </span>
+          <span className="user_confirm-email-alert-text">Please confirm your email.</span>
           <Button
             variant={emailState === emailStates.EMAIL_FAILED ? 'danger' : 'primary'}
             disabled={emailState !== emailStates.EMAIL_NOT_SENT}
