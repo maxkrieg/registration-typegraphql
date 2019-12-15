@@ -3,7 +3,7 @@ import './css/User.css'
 import { RouteComponentProps } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
-import { User as UserEntity } from '../types/graphql.d'
+import { User } from '../types/graphql.d'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -48,10 +48,6 @@ const RESEND_CONFIRMATION_EMAIL = gql`
   }
 `
 
-// const EMAIL_NOT_SENT = 'not sent'
-// const EMAIL_SENT = 'sent'
-// const EMAIL_FAILED = 'failed'
-
 const emailStates = {
   EMAIL_NOT_SENT: 'not sent',
   EMAIL_SENT: 'sent',
@@ -60,7 +56,7 @@ const emailStates = {
 
 const UserPage: React.FC<RouteComponentProps> = props => {
   const { loading: userQueryLoading, data: userData, error: userQueryError } = useQuery<{
-    user: UserEntity
+    user: User
   }>(GET_USER_INFO)
 
   const [emailState, setEmailState] = useState(emailStates.EMAIL_NOT_SENT)
@@ -89,7 +85,9 @@ const UserPage: React.FC<RouteComponentProps> = props => {
   if (!userData || userQueryLoading) {
     return (
       <UserPageWrapper>
-        <Spinner animation="border" />
+        <div style={{ textAlign: 'center' }}>
+          <Spinner animation="border" />
+        </div>
       </UserPageWrapper>
     )
   }

@@ -14,7 +14,7 @@ export type Mutation = {
   register: User
   resendConfirmationEmail: Scalars['Boolean']
   login?: Maybe<User>
-  confirmUser: Scalars['Boolean']
+  confirmUser: User
 }
 
 export type MutationRegisterArgs = {
