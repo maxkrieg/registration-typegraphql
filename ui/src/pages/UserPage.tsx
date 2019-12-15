@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react'
-import './css/User.css'
+import './css/UserPage.css'
 import { RouteComponentProps } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'

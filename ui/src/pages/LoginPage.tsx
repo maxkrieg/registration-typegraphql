@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './css/Login.css'
+import './css/LoginPage.css'
 import { RouteComponentProps, Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-const Login: React.FC<RouteComponentProps> = props => {
+const LoginPage: React.FC<RouteComponentProps> = props => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   return (
@@ -52,4 +52,4 @@ const Login: React.FC<RouteComponentProps> = props => {
   )
 }
 
-export default Login
+export default LoginPage

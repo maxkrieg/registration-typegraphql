@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
-import Home from './pages/Home'
-import Login from './pages/Login'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import UserPage from './pages/UserPage'
 import EmailConfirmedPage from './pages/EmailConfirmedPage'
@@ -27,8 +27,8 @@ const App: React.FC = () => {
         </Navbar.Collapse>
       </Navbar>
       <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/login" component={Login} />
+        <Route path="/" exact component={HomePage} />
+        <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/user" exact component={UserPage} />
         <Route path="/user/confirm/:token" exact component={EmailConfirmedPage} />

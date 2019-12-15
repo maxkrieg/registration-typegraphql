@@ -1,12 +1,12 @@
 import React from 'react'
-import './css/Home.css'
+import './css/HomePage.css'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 import { sections } from '../content/home'
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
     <Container fluid className="home_container">
       <Row>
@@ -28,4 +28,4 @@ const Home: React.FC = () => {
   )
 }
 
-export default Home
+export default HomePage
