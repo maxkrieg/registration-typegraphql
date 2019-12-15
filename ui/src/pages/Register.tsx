@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Spinner from 'react-bootstrap/Spinner'
+import Alert from 'react-bootstrap/Alert'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
 
@@ -30,6 +32,7 @@ const Register: React.FC<RouteComponentProps> = props => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [isPasswordMatch, setPasswordMatch] = useState(false)
   const [formSubmissionError, setFormSubmissionError] = useState(false)
+  const [validated, setValidated] = useState(false)
 
   useEffect(() => {
     if (!password || !confirmPassword) return
@@ -41,7 +44,10 @@ const Register: React.FC<RouteComponentProps> = props => {
     }
   }, [password, confirmPassword])
 
-  const [submitRegistration] = useMutation(registerUser, {
+  const [
+    submitRegistration,
+    { loading: registrationLoading, error: registrationError },
+  ] = useMutation(registerUser, {
     onCompleted: _ => props.history.push('/user'),
   })
 
@@ -55,6 +61,8 @@ const Register: React.FC<RouteComponentProps> = props => {
 
   const handleSubmitClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
+    setValidated(true)
+
     if (!firstName || !lastName || !email || !password || !confirmPassword || !isPasswordMatch) {
       setFormSubmissionError(true)
       return
@@ -76,7 +84,7 @@ const Register: React.FC<RouteComponentProps> = props => {
       <Row className="justify-content-md-center">
         <Col xs lg="6">
           <h2>Register</h2>
-          <Form>
+          <Form noValidate validated={validated}>
             <Form.Row>
               <Col>
                 <Form.Group controlId="formFirstName">
@@ -144,11 +152,28 @@ const Register: React.FC<RouteComponentProps> = props => {
                 {confirmPassword && !isPasswordMatch && 'Passwords must match'}
               </Form.Text>
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={handleSubmitClick}>
-              Register
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={handleSubmitClick}
+              disabled={registrationLoading}
+            >
+              Register{' '}
+              {registrationLoading && (
+                <Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" />
+              )}
             </Button>
-            {formSubmissionError && <p>Error submitting form</p>}
+            {formSubmissionError && (
+              <Alert variant="danger" style={{ marginTop: '10px', textAlign: 'center' }}>
+                Please fix fields highlighted in red.
+              </Alert>
+            )}
           </Form>
+          {registrationError && (
+            <Alert variant="danger" style={{ textAlign: 'center' }}>
+              Registration Error: {registrationError.graphQLErrors[0].message}
+            </Alert>
+          )}
           <div className="register_login-cta-group">
             <p>Already have an account?</p>
             <Link to="/login">
