@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav'
 
 import Home from './pages/Home'
 import Login from './pages/Login'
-import Register from './pages/Register'
+import RegisterPage from './pages/RegisterPage'
 import UserPage from './pages/UserPage'
 import EmailConfirmedPage from './pages/EmailConfirmedPage'
 import { sections } from './content/home'
@@ -29,7 +29,7 @@ const App: React.FC = () => {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        <Route path="/register" component={RegisterPage} />
         <Route path="/user" exact component={UserPage} />
         <Route path="/user/confirm/:token" exact component={EmailConfirmedPage} />
       </Switch>

@@ -11,8 +11,8 @@ import Alert from 'react-bootstrap/Alert'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
 
-const registerUser = gql`
-  mutation registerUser($data: RegisterInput!) {
+const REGISTER = gql`
+  mutation Register($data: RegisterInput!) {
     register(data: $data) {
       id
       firstName
@@ -23,7 +23,7 @@ const registerUser = gql`
   }
 `
 
-const Register: React.FC<RouteComponentProps> = props => {
+const RegisterPage: React.FC<RouteComponentProps> = props => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -47,7 +47,7 @@ const Register: React.FC<RouteComponentProps> = props => {
   const [
     submitRegistration,
     { loading: registrationLoading, error: registrationError },
-  ] = useMutation(registerUser, {
+  ] = useMutation(REGISTER, {
     onCompleted: _ => props.history.push('/user'),
   })
 
@@ -187,4 +187,4 @@ const Register: React.FC<RouteComponentProps> = props => {
   )
 }
 
-export default Register
+export default RegisterPage
