@@ -10,6 +10,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import Alert from 'react-bootstrap/Alert'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
+import { isValidEmailAddress } from '../utils/email'
 
 const REGISTER = gql`
   mutation Register($data: RegisterInput!) {
@@ -63,7 +64,15 @@ const RegisterPage: React.FC<RouteComponentProps> = props => {
     e.preventDefault()
     setValidated(true)
 
-    if (!firstName || !lastName || !email || !password || !confirmPassword || !isPasswordMatch) {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !isValidEmailAddress(email) ||
+      !password ||
+      !confirmPassword ||
+      !isPasswordMatch
+    ) {
       setFormSubmissionError(true)
       return
     }
@@ -120,6 +129,7 @@ const RegisterPage: React.FC<RouteComponentProps> = props => {
                 required
                 value={email}
                 type="email"
+                isValid={isValidEmailAddress(email)}
                 placeholder="Enter email"
                 onChange={createChangeHandler(setEmail)}
               />
