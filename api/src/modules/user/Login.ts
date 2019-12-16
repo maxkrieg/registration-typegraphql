@@ -5,21 +5,23 @@ import { MyContext } from '../../types/MyContext'
 
 @Resolver()
 export class LoginResolver {
-  @Mutation(() => User, { nullable: true })
+  @Mutation(() => User)
   async login(
     @Arg('email') email: string,
     @Arg('password') password: string,
     @Ctx() ctx: MyContext,
-  ): Promise<User | null> {
+  ): Promise<User> {
     const user = await User.findOne({
       where: { email },
     })
-    if (!user) return null
+    if (!user) {
+      throw new Error('No user account is associated with that email address')
+    }
 
     const valid = await bcrypt.compare(password, user.password)
-    if (!valid) return null
-
-    if (!user.confirmed) return null
+    if (!valid) {
+      throw new Error('Password is invalid')
+    }
 
     ctx.req.session!.userId = user.id
 

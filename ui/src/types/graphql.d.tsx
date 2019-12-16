@@ -13,7 +13,7 @@ export type Mutation = {
   __typename?: 'Mutation'
   register: User
   resendConfirmationEmail: Scalars['Boolean']
-  login?: Maybe<User>
+  login: User
   confirmUser: User
 }
 
