@@ -9,12 +9,36 @@ export type Scalars = {
   Float: number
 }
 
+export type ChangePasswordInput = {
+  token: Scalars['String']
+  password: Scalars['String']
+}
+
 export type Mutation = {
   __typename?: 'Mutation'
+  confirmUser: User
+  sendResetPasswordEmail: Scalars['Boolean']
+  changePassword: User
+  login: User
   register: User
   resendConfirmationEmail: Scalars['Boolean']
-  login: User
-  confirmUser: User
+}
+
+export type MutationConfirmUserArgs = {
+  token: Scalars['String']
+}
+
+export type MutationSendResetPasswordEmailArgs = {
+  email: Scalars['String']
+}
+
+export type MutationChangePasswordArgs = {
+  data: ChangePasswordInput
+}
+
+export type MutationLoginArgs = {
+  password: Scalars['String']
+  email: Scalars['String']
 }
 
 export type MutationRegisterArgs = {
@@ -25,18 +49,8 @@ export type MutationResendConfirmationEmailArgs = {
   data: ResendEmailInput
 }
 
-export type MutationLoginArgs = {
-  password: Scalars['String']
-  email: Scalars['String']
-}
-
-export type MutationConfirmUserArgs = {
-  token: Scalars['String']
-}
-
 export type Query = {
   __typename?: 'Query'
-  hello: Scalars['String']
   user?: Maybe<User>
 }
 

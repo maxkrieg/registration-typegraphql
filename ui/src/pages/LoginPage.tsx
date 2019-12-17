@@ -111,6 +111,7 @@ const LoginPage: React.FC<RouteComponentProps> = props => {
               <i className="fas fa-arrow-circle-right login_register-link-icon" />
             </Link>
           </div>
+          {/*Add reset password link and mutation */}
         </Col>
       </Row>
     </Container>

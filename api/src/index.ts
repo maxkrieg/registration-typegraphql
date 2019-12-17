@@ -9,10 +9,6 @@ import { createConnection } from 'typeorm'
 import { MyContext } from './types/MyContext'
 
 import redis from './redis'
-import { RegisterResolver } from './modules/user/Register'
-import { LoginResolver } from './modules/user/Login'
-import { UserResolver } from './modules/user/User'
-import { ConfirmUserResolver } from './modules/user/ConfirmUserResolver'
 import { requestLogger } from './middleware/requestLogger'
 import { ErrorInterceptor } from './middleware/errors'
 
@@ -23,7 +19,7 @@ const main = async () => {
   await createConnection()
 
   const schema = await buildSchema({
-    resolvers: [UserResolver, RegisterResolver, LoginResolver, ConfirmUserResolver],
+    resolvers: [__dirname + '/modules/**/*.ts'],
     globalMiddlewares: [ErrorInterceptor, requestLogger],
   })
 

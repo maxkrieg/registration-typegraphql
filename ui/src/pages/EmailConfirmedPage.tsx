@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Alert from 'react-bootstrap/Alert'
 import Spinner from 'react-bootstrap/Spinner'
+import { MutationConfirmUserArgs } from '../types/graphql.d'
 
 const CONFIRM_USER = gql`
   mutation ConfirmUser($token: String!) {
@@ -21,7 +22,7 @@ const CONFIRM_USER = gql`
 `
 
 const EmailConfirmedPage: React.FC<RouteComponentProps> = props => {
-  const { token } = useParams()
+  const { token } = useParams<{ token: string }>()
   const [user, setUser] = useState()
 
   const [sendConfirmation, { loading: confirmUserLoading, error: confirmUserError }] = useMutation(
@@ -34,9 +35,8 @@ const EmailConfirmedPage: React.FC<RouteComponentProps> = props => {
   )
 
   useEffect(() => {
-    sendConfirmation({
-      variables: { token },
-    })
+    const variables: MutationConfirmUserArgs = { token }
+    sendConfirmation({ variables })
   }, [token, sendConfirmation])
 
   return (
