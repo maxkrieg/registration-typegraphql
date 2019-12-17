@@ -11,6 +11,7 @@ import { gql } from 'apollo-boost'
 import Alert from 'react-bootstrap/Alert'
 import Spinner from 'react-bootstrap/Spinner'
 import { isValidEmailAddress } from '../utils/email'
+import RequestPasswordResetModal from './loginPage/RequestPasswordResetModal'
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -105,13 +106,15 @@ const LoginPage: React.FC<RouteComponentProps> = props => {
             </Alert>
           )}
           <div className="login_register-cta-group">
-            <p>Dont' have an account?</p>
+            <p>Don't have an account?</p>
             <Link to="/register">
               Create one now
               <i className="fas fa-arrow-circle-right login_register-link-icon" />
             </Link>
           </div>
-          {/*Add reset password link and mutation */}
+          <div className="login_request-password-modal-wrapper">
+            <RequestPasswordResetModal />
+          </div>
         </Col>
       </Row>
     </Container>
