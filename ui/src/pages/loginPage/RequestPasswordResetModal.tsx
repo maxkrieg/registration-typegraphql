@@ -25,11 +25,30 @@ const RequestPasswordResetModal: React.FC<Props> = () => {
   const [emailSent, setEmailSent] = useState(false)
 
   const [sendResetPasswordEmail, { loading, error }] = useMutation(SEND_RESET_PASSWORD_EMAIL, {
-    onCompleted: _ => setEmailSent(true),
+    onCompleted: _ => {
+      setEmailSent(true)
+      setTimeout(() => {
+        handleClose()
+      }, 1000)
+    },
   })
 
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const resetModalState = () => {
+    setEmail('')
+    setValidated(false)
+    setEmailSent(false)
+    setFormSubmissionError(false)
+  }
+
+  const handleClose = () => {
+    resetModalState()
+    setShow(false)
+  }
+
+  const handleShow = () => {
+    resetModalState()
+    setShow(true)
+  }
 
   const handleSubmitClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
