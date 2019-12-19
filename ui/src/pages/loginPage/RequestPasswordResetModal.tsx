@@ -15,9 +15,7 @@ const SEND_RESET_PASSWORD_EMAIL = gql`
   }
 `
 
-interface Props {}
-
-const RequestPasswordResetModal: React.FC<Props> = () => {
+const RequestPasswordResetModal: React.FC = () => {
   const [show, setShow] = useState(false)
   const [email, setEmail] = useState('')
   const [formSubmissionError, setFormSubmissionError] = useState(false)

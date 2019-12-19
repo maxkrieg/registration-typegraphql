@@ -1,33 +1,15 @@
-import React, { ReactNode, useState } from 'react'
+import React, { useState } from 'react'
 import './css/UserPage.css'
 import { RouteComponentProps } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import { User } from '../types/graphql.d'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+
 import Spinner from 'react-bootstrap/Spinner'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
-
-interface UserPageWrapperProps {
-  children: ReactNode
-}
-
-const UserPageWrapper: React.FC<UserPageWrapperProps> = ({ children }) => {
-  return (
-    <Container>
-      <Row className="justify-content-md-center">
-        <Col xs lg="6">
-          <h3 className="user_header">User Account</h3>
-          {children}
-        </Col>
-      </Row>
-    </Container>
-  )
-}
+import UserPageWrapper from './userPage/UserPageWrapper'
 
 const GET_USER_INFO = gql`
   query GetUserInfo {
@@ -54,7 +36,7 @@ const emailStates = {
   EMAIL_FAILED: 'failed',
 }
 
-const UserPage: React.FC<RouteComponentProps> = props => {
+const UserPage: React.FC<RouteComponentProps> = () => {
   const { loading: userQueryLoading, data: userData, error: userQueryError } = useQuery<{
     user: User
   }>(GET_USER_INFO)
