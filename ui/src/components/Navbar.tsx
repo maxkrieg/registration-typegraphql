@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import NavbarRB from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
-import { sections } from '../content/home'
-import { GET_USER_INFO } from '../state/queries'
+import { sections } from '../pages/homePage/content'
+import { GET_USER_INFO } from '../shared/queries'
 import { User } from '../types/graphql.d'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
@@ -19,7 +19,7 @@ const LOGOUT = gql`
 
 const Navbar: React.FC = () => {
   const client = useApolloClient()
-  const { data, loading } = useQuery<{ user: User }>(GET_USER_INFO)
+  const { data, loading: userInfoLoading } = useQuery<{ user: User }>(GET_USER_INFO)
   const [logout, { loading: logoutLoading }] = useMutation(LOGOUT, {
     onCompleted: _ => {
       client.resetStore()
@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
       </Nav.Link>
     </>
   )
-  if (loading) {
+  if (userInfoLoading) {
     userNavbarText = <Spinner animation="grow" variant="primary" />
   } else if (data && data.user.fullName) {
     userNavbarText = (
