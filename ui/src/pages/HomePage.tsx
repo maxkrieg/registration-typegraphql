@@ -13,13 +13,13 @@ const HomePage: React.FC = () => {
       <Row>
         <Image src={banner} style={{ width: '100%' }} />
       </Row>
-      {sections.map(({ title, description }) => (
+      {sections.map(({ title, content }) => (
         <Row id={title} key={title}>
           <Container fluid className="home_section-container">
             <Row>
               <Col>
                 <h2>{title}</h2>
-                {description}
+                {content}
               </Col>
             </Row>
           </Container>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts'
-import { Container, Tabs, Tab, Row } from 'react-bootstrap'
+import { Container, Tabs, Tab, Row, Col } from 'react-bootstrap'
 
 const SKILL_SECTIONS = [
   {
@@ -9,29 +9,33 @@ const SKILL_SECTIONS = [
       { name: 'JavaScript', value: 90 },
       { name: 'Typescript', value: 75 },
       { name: 'Python', value: 85 },
-      { name: 'SQL', value: 60 },
+      { name: 'Ruby', value: 60 },
+      { name: 'SQL', value: 75 },
       { name: 'HTML', value: 90 },
-      { name: 'CSS', value: 80 }
+      { name: 'CSS', value: 80 },
     ]
   },
   {
     name: 'Front End',
     data: [
-      { name: 'React.js', value: 85 },
+      { name: 'React.js', value: 95 },
       { name: 'HTML', value: 90 },
-      { name: 'CSS', value: 75 },
-      { name: 'jQuery', value: 70 },
-      { name: 'webpack', value: 85 }
+      { name: 'CSS', value: 80 },
+      { name: 'Sass', value: 70 },
+      { name: 'webpack', value: 85 },
+      { name: 'mocha', value: 90 },
+      { name: 'jest', value: 90 }
     ]
   },
   {
     name: 'Back End',
     data: [
-      { name: 'Node.js', value: 80 },
+      { name: 'Node.js', value: 90 },
       { name: 'Express.js', value: 90 },
-      { name: 'GraphQL', value: 70 },
-      { name: 'Flask', value: 65 },
+      { name: 'GraphQL', value: 75 },
+      { name: 'Flask', value: 75 },
       { name: 'RxJS', value: 50 },
+      { name: 'Ruby on Rails', value: 60 }
     ]
   },
   {
@@ -41,7 +45,7 @@ const SKILL_SECTIONS = [
       { name: 'MonogoDB', value: 70 },
       { name: 'RabbitMQ', value: 65 },
       { name: 'Memcached', value: 70 },
-      { name: 'Redis', value: 60 },
+      { name: 'Redis', value: 65 },
     ]
   },
   {
@@ -59,7 +63,7 @@ const SKILL_SECTIONS = [
     data: [
       { name: 'Mob & Pair Programming', value: 90 },
       { name: 'LEAN', value: 90 },
-      { name: 'Continuous Delivery & Deployment (CI/CD)', value: 85 },
+      { name: 'CI/CD', value: 85 },
       { name: 'Microservice Architecture', value: 88 },
       { name: 'Remote Collaboration', value: 75 }
     ]
@@ -70,25 +74,21 @@ interface ChartProps {
   data: any
 }
 
-const SkillBarChart: React.FC<ChartProps> = ({ data }) => {
-  return (
-    <BarChart width={800} height={250} data={data} layout="vertical">
-      <YAxis dataKey="name" type="category" />
-      <XAxis dataKey="value" type="number" />
-      <Bar dataKey="value" fill="#8884d8" />
-    </BarChart>
-  )
-}
-
 const SkillRadarChart: React.FC<ChartProps> = ({ data }) => {
   const newData = data.map((skill: any) => ({ ...skill, fullMark: 100 }))
   return (
-    <RadarChart cx={300} cy={250} outerRadius={150} width={500} height={500} data={newData}>
+    <RadarChart
+      cx={300}
+      cy={250}
+      outerRadius={150}
+      width={625}
+      height={500}
+      data={newData}
+      style={{ margin: '0 auto' }}
+    >
       <PolarGrid />
       <PolarAngleAxis dataKey="name" />
-      {/* <PolarRadiusAxis /> */}
-      <Radar name="Skill Level" dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-      {/* <Tooltip /> */}
+      <Radar name="Skill Level" dataKey="value" stroke="#007BFF" fill="#007BFF" fillOpacity={0.7} />
     </RadarChart>
   )
 }
@@ -98,13 +98,15 @@ const WrappedChart: React.FC = () => {
   return (
     <Container fluid style={{ textAlign: 'center' }}>
       <Row className="justify-content-md-center">
-        <Tabs defaultActiveKey="languages" id="uncontrolled-tab-example">
-          {SKILL_SECTIONS.map(section => (
-            <Tab eventKey={section.name.toLowerCase().replace(' ', '-')} title={section.name}>
-              <SkillRadarChart data={section.data} />
-            </Tab>
-          ))}
-        </Tabs>
+        <Col sm={12} md={10} lg={8}>
+          <Tabs defaultActiveKey="languages" id="uncontrolled-tab-example" style={{ width: '625px', margin: '0 auto' }}>
+            {SKILL_SECTIONS.map(section => (
+              <Tab eventKey={section.name.toLowerCase().replace(' ', '-')} title={section.name}>
+                <SkillRadarChart data={section.data} />
+              </Tab>
+            ))}
+          </Tabs>
+        </Col>
       </Row>
     </Container>
   )

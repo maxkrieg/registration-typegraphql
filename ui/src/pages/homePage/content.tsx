@@ -1,10 +1,11 @@
 import React from 'react'
 import SkillBarChart from './SkillChart'
+import { Container, Row, Col } from 'react-bootstrap'
 
 export const sections = [
   {
     title: 'about',
-    description: (
+    content: (
       <p>
         I'm a passionate Software Engineer who loves to collaborate with others to solve hard
         problems. I enjoy full-stack web development as well as Dev Ops work. I believe in{' '}
@@ -19,7 +20,7 @@ export const sections = [
   },
   {
     title: 'portfolio',
-    description: (
+    content: (
       <p>
         While most of my code is written for work, I have some personal projects on{' '}
         <a href="https://github.com/maxkrieg" target="_blank">
@@ -31,14 +32,31 @@ export const sections = [
   },
   {
     title: 'skills',
-    description: <SkillBarChart />,
+    content: (
+      <div>
+        <Container fluid>
+          <Row className="justify-content-md-center">
+            <Col sm={12}>
+              <p>
+                The reason I enjoy Software Development is because <strong>I love to <em>learn</em></strong>.  I always want to challenge myself and to skill up in new areas.  I believe there is no "one size fits all" when it comes to a tech stack and that different circumstances call for different technologies.
+              </p>
+              <div style={{ height: '20px' }} />
+              <p>
+                The majority of my current programming skills lie in <strong>JavaScript</strong> and <strong>Python</strong>.  I enjoy <strong>React.js</strong> on the front end and <strong>Node.js</strong> on the back end.  I have been using <strong>Typescript</strong> much more lately on both the front end and back end.  <strong>PostgreSQL</strong> has been my database of choice, alongside <strong>Redis</strong> for caching.  Skilling up in the area of <strong>DevOps</strong> has been a focus lately, with much of my time spent working within <strong>Docker</strong>, <strong>Kubernetes</strong>, and <strong>AWS</strong>.
+              </p>
+            </Col>
+          </Row>
+        </Container>
+        <div style={{ height: '30px' }} />
+        <SkillBarChart />
+      </div>)
   },
   {
     title: 'work',
-    description: <p>lmgtfy</p>,
+    content: <p>lmgtfy</p>,
   },
   {
     title: 'contact',
-    description: <p>lmgtfy</p>,
+    content: <p>lmgtfy</p>,
   },
 ]
