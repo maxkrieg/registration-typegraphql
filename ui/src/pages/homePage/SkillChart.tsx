@@ -1,6 +1,19 @@
 import React from 'react'
-import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts'
-import { Container, Tabs, Tab, Row, Col } from 'react-bootstrap'
+import {
+  BarChart,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  Bar,
+  ResponsiveContainer,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar,
+} from 'recharts'
+import { Container, Tabs, Tab, Row, Col, TabContainer, Nav } from 'react-bootstrap'
 
 const SKILL_SECTIONS = [
   {
@@ -13,7 +26,7 @@ const SKILL_SECTIONS = [
       { name: 'SQL', value: 75 },
       { name: 'HTML', value: 90 },
       { name: 'CSS', value: 80 },
-    ]
+    ],
   },
   {
     name: 'Front End',
@@ -24,8 +37,8 @@ const SKILL_SECTIONS = [
       { name: 'Sass', value: 70 },
       { name: 'webpack', value: 85 },
       { name: 'mocha', value: 90 },
-      { name: 'jest', value: 90 }
-    ]
+      { name: 'jest', value: 90 },
+    ],
   },
   {
     name: 'Back End',
@@ -35,8 +48,8 @@ const SKILL_SECTIONS = [
       { name: 'GraphQL', value: 75 },
       { name: 'Flask', value: 75 },
       { name: 'RxJS', value: 50 },
-      { name: 'Ruby on Rails', value: 60 }
-    ]
+      { name: 'Ruby on Rails', value: 60 },
+    ],
   },
   {
     name: 'Data',
@@ -46,7 +59,7 @@ const SKILL_SECTIONS = [
       { name: 'RabbitMQ', value: 65 },
       { name: 'Memcached', value: 70 },
       { name: 'Redis', value: 65 },
-    ]
+    ],
   },
   {
     name: 'DevOps',
@@ -56,18 +69,18 @@ const SKILL_SECTIONS = [
       { name: 'Helm', value: 40 },
       { name: 'SaltStack', value: 70 },
       { name: 'Virtual Machines', value: 65 },
-    ]
+    ],
   },
   {
     name: 'Methodologies',
     data: [
       { name: 'Mob & Pair Programming', value: 90 },
       { name: 'LEAN', value: 90 },
-      { name: 'CI/CD', value: 85 },
       { name: 'Microservice Architecture', value: 88 },
-      { name: 'Remote Collaboration', value: 75 }
-    ]
-  }
+      { name: 'Remote Collaboration', value: 75 },
+      { name: 'CI/CD', value: 85 },
+    ],
+  },
 ]
 
 interface ChartProps {
@@ -77,15 +90,7 @@ interface ChartProps {
 const SkillRadarChart: React.FC<ChartProps> = ({ data }) => {
   const newData = data.map((skill: any) => ({ ...skill, fullMark: 100 }))
   return (
-    <RadarChart
-      cx={300}
-      cy={250}
-      outerRadius={150}
-      width={625}
-      height={500}
-      data={newData}
-      style={{ margin: '0 auto' }}
-    >
+    <RadarChart width={600} height={400} data={newData} style={{ margin: '0 auto' }}>
       <PolarGrid />
       <PolarAngleAxis dataKey="name" />
       <Radar name="Skill Level" dataKey="value" stroke="#007BFF" fill="#007BFF" fillOpacity={0.7} />
@@ -93,23 +98,33 @@ const SkillRadarChart: React.FC<ChartProps> = ({ data }) => {
   )
 }
 
-
-const WrappedChart: React.FC = () => {
+const SkillChart: React.FC = () => {
   return (
-    <Container fluid style={{ textAlign: 'center' }}>
+    <Tab.Container id="center-tabs-example" defaultActiveKey="languages">
       <Row className="justify-content-md-center">
-        <Col sm={12} md={10} lg={8}>
-          <Tabs defaultActiveKey="languages" id="uncontrolled-tab-example" style={{ width: '625px', margin: '0 auto' }}>
+        <Col sm={2}>
+          <Nav variant="pills" className="flex-column" style={{ paddingTop: '70px' }}>
             {SKILL_SECTIONS.map(section => (
-              <Tab eventKey={section.name.toLowerCase().replace(' ', '-')} title={section.name}>
-                <SkillRadarChart data={section.data} />
-              </Tab>
+              <Nav.Item style={{ textAlign: 'left' }}>
+                <Nav.Link eventKey={section.name.toLowerCase().replace(' ', '-')}>
+                  {section.name}
+                </Nav.Link>
+              </Nav.Item>
             ))}
-          </Tabs>
+          </Nav>
+        </Col>
+        <Col sm={5}>
+          <Tab.Content>
+            {SKILL_SECTIONS.map(section => (
+              <Tab.Pane eventKey={section.name.toLowerCase().replace(' ', '-')}>
+                <SkillRadarChart data={section.data} />
+              </Tab.Pane>
+            ))}
+          </Tab.Content>
         </Col>
       </Row>
-    </Container>
+    </Tab.Container>
   )
 }
 
-export default WrappedChart
+export default SkillChart
