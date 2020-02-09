@@ -1,0 +1,10 @@
+.timeline__icon {
+  display: block;
+  width: 36px;
+  height: 36px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  margin-left: -18px;
+  margin-top: -18px;
+}
