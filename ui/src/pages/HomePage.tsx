@@ -13,8 +13,12 @@ const HomePage: React.FC = () => {
       <Row>
         <Image src={banner} style={{ width: '100%' }} />
       </Row>
-      {sections.map(({ title, content }) => (
-        <Row id={title} key={title}>
+      {sections.map(({ title, content }, i) => (
+        <Row
+          id={title}
+          key={title}
+          style={i % 2 === 0 ? { backgroundColor: '#FFFFFF' } : { backgroundColor: '#F2F2F2' }}
+        >
           <Container fluid className="home_section-container">
             <Row>
               <Col>

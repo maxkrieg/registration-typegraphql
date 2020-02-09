@@ -1,21 +1,18 @@
 import React from 'react'
-import {
-  BarChart,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  Bar,
-  ResponsiveContainer,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Radar,
-} from 'recharts'
-import { Container, Tabs, Tab, Row, Col, TabContainer, Nav } from 'react-bootstrap'
+import { RadarChart, PolarGrid, PolarAngleAxis, Radar } from 'recharts'
+import { Tab, Row, Col, Nav } from 'react-bootstrap'
 
-const SKILL_SECTIONS = [
+interface SkillSectionDataItem {
+  name: string
+  value: number
+}
+
+interface SkillSection {
+  name: string
+  data: SkillSectionDataItem[]
+}
+
+const SKILL_SECTIONS: SkillSection[] = [
   {
     name: 'Languages',
     data: [
@@ -84,11 +81,11 @@ const SKILL_SECTIONS = [
 ]
 
 interface ChartProps {
-  data: any
+  data: SkillSectionDataItem[]
 }
 
 const SkillRadarChart: React.FC<ChartProps> = ({ data }) => {
-  const newData = data.map((skill: any) => ({ ...skill, fullMark: 100 }))
+  const newData = data.map(skill => ({ ...skill, fullMark: 100 }))
   return (
     <RadarChart width={600} height={400} data={newData} style={{ margin: '0 auto' }}>
       <PolarGrid />
@@ -104,7 +101,7 @@ const SkillChart: React.FC = () => {
       <Row className="justify-content-md-center">
         <Col sm={2}>
           <Nav variant="pills" className="flex-column" style={{ paddingTop: '70px' }}>
-            {SKILL_SECTIONS.map(section => (
+            {SKILL_SECTIONS.map((section: SkillSection) => (
               <Nav.Item style={{ textAlign: 'left' }}>
                 <Nav.Link eventKey={section.name.toLowerCase().replace(' ', '-')}>
                   {section.name}
@@ -115,7 +112,7 @@ const SkillChart: React.FC = () => {
         </Col>
         <Col sm={5}>
           <Tab.Content>
-            {SKILL_SECTIONS.map(section => (
+            {SKILL_SECTIONS.map((section: SkillSection) => (
               <Tab.Pane eventKey={section.name.toLowerCase().replace(' ', '-')}>
                 <SkillRadarChart data={section.data} />
               </Tab.Pane>

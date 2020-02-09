@@ -52,7 +52,13 @@ const Navbar: React.FC = () => {
     )
   }
   return (
-    <NavbarRB expand="sm" sticky="top" bg="light" variant="light">
+    <NavbarRB
+      expand="sm"
+      sticky="top"
+      bg="light"
+      variant="light"
+      style={{ boxShadow: '0 2px 10px 0px #777' }}
+    >
       <NavbarRB.Toggle aria-controls="basic-navbar-nav" />
       <Link to="/">
         <NavbarRB.Brand as="span">MAX KRIEG</NavbarRB.Brand>

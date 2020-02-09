@@ -1,15 +1,25 @@
 import React from 'react'
 import SkillChart from './SkillChart'
+import Timeline from './Timeline'
 import { Container, Row, Col } from 'react-bootstrap'
 
-export const sections = [
+interface Section {
+  title: string
+  content: JSX.Element
+}
+
+export const sections: Section[] = [
   {
     title: 'about',
     content: (
       <p>
         I'm a passionate Software Engineer who loves to collaborate with others to solve hard
         problems. I enjoy full-stack web development as well as Dev Ops work. I believe in{' '}
-        <a href="https://en.wikipedia.org/wiki/Lean_software_development" target="_blank">
+        <a
+          href="https://en.wikipedia.org/wiki/Lean_software_development"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           lean software development
         </a>
         , flow efficiency, and mob programming. Outside of coding, I enjoy hiking, climbing, or
@@ -23,7 +33,7 @@ export const sections = [
     content: (
       <p>
         While most of my code is written for work, I have some personal projects on{' '}
-        <a href="https://github.com/maxkrieg" target="_blank">
+        <a href="https://github.com/maxkrieg" target="_blank" rel="noopener noreferrer">
           github
         </a>
         .
@@ -68,10 +78,28 @@ export const sections = [
   },
   {
     title: 'work',
-    content: <p>lmgtfy</p>,
+    content: <Timeline />,
   },
   {
     title: 'contact',
-    content: <p>lmgtfy</p>,
+    content: (
+      <>
+        <p>
+          <a href="mailto: hellomaxkrieg@gmail.com">
+            <i className="fas fa-envelope" /> hellomaxkrieg@gmail.com
+          </a>
+        </p>
+        <p>
+          <a href="https://twitter.com/MaxwellKrieg" target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-twitter" /> @MaxwellKrieg
+          </a>
+        </p>
+        <p>
+          <a href="https://github.com/maxkrieg" target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-github-alt"></i> @maxkrieg
+          </a>
+        </p>
+      </>
+    ),
   },
 ]
