@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
         <Row
           id={title}
           key={title}
-          style={i % 2 === 0 ? { backgroundColor: '#FFFFFF' } : { backgroundColor: '#F2F2F2' }}
+          style={i % 2 === 0 ? { backgroundColor: '#F1F2F4' } : { backgroundColor: '#E2E6E9' }}
         >
           <Container fluid className="home_section-container">
             <Row>

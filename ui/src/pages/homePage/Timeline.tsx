@@ -2,11 +2,7 @@ import React from 'react'
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component'
 import 'react-vertical-timeline-component/style.min.css'
 import './timeline/Timeline.css'
-import logo from './timeline/ps-logo.png'
 import { timelineContent } from './timeline/timelineContent'
-
-const WorkIcon: React.FC = () => <img src={logo} className="timeline__icon" />
-const SchoolIcon: React.FC = () => <i className="fas fa-book timeline__icon"></i>
 
 const Timeline: React.FC = () => {
   return (
@@ -17,14 +13,37 @@ const Timeline: React.FC = () => {
             className="vertical-timeline-element--work"
             date={timelineItem.dates}
             iconStyle={{
-              background: '#fff',
-              color: '#fff',
+              background: '#FFFFFF',
+              boxShadow: 'none',
             }}
-            icon={<WorkIcon />}
+            icon={timelineItem.icon}
+            position={timelineItem.position}
           >
-            <h4 className="vertical-timeline-element-title">{timelineItem.title}</h4>
-            <h5 className="vertical-timeline-element-subtitle">{timelineItem.company}</h5>
-            <h6 className="vertical-timeline-element-subtitle">{timelineItem.location}</h6>
+            <h4
+              className="vertical-timeline-element-title"
+              style={{ fontSize: '20px', fontWeight: 800 }}
+            >
+              {timelineItem.title}
+            </h4>
+            <h5
+              className="vertical-timeline-element-subtitle"
+              style={{ fontSize: '18px', fontWeight: 300 }}
+            >
+              {timelineItem.team}
+            </h5>
+            <div style={{ height: '10px' }} />
+            <h5
+              className="vertical-timeline-element-subtitle"
+              style={{ fontSize: '18px', color: '#555555' }}
+            >
+              {timelineItem.company}
+            </h5>
+            <h6
+              className="vertical-timeline-element-subtitle"
+              style={{ fontSize: '16px', color: '#555555' }}
+            >
+              <em>{timelineItem.location}</em>
+            </h6>
             <div style={{ height: '16px' }} />
             {timelineItem.description}
           </VerticalTimelineElement>

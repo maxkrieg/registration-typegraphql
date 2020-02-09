@@ -29,18 +29,6 @@ export const sections: Section[] = [
     ),
   },
   {
-    title: 'portfolio',
-    content: (
-      <p>
-        While most of my code is written for work, I have some personal projects on{' '}
-        <a href="https://github.com/maxkrieg" target="_blank" rel="noopener noreferrer">
-          github
-        </a>
-        .
-      </p>
-    ),
-  },
-  {
     title: 'skills',
     content: (
       <div>
@@ -79,6 +67,18 @@ export const sections: Section[] = [
   {
     title: 'work',
     content: <Timeline />,
+  },
+  {
+    title: 'portfolio',
+    content: (
+      <p>
+        While most of my code is written for work, I have some personal projects on{' '}
+        <a href="https://github.com/maxkrieg" target="_blank" rel="noopener noreferrer">
+          github
+        </a>
+        .
+      </p>
+    ),
   },
   {
     title: 'contact',
