@@ -10,14 +10,13 @@ const Timeline: React.FC = () => {
       <VerticalTimeline>
         {timelineContent.map(timelineItem => (
           <VerticalTimelineElement
-            className="vertical-timeline-element--work"
+            className="timeline__timeline-element"
             date={timelineItem.dates}
             iconStyle={{
               background: '#FFFFFF',
               boxShadow: 'none',
             }}
             icon={timelineItem.icon}
-            position={timelineItem.position}
           >
             <h4
               className="vertical-timeline-element-title"

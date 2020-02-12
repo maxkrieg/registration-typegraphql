@@ -7,6 +7,9 @@ import Image from 'react-bootstrap/Image'
 import { sections } from './homePage/content'
 import banner from './homePage/zion-background.jpg'
 
+const LIGHT_BG = '#F1F2F4'
+const DARK_BG = '#E2E6E9'
+
 const HomePage: React.FC = () => {
   return (
     <Container fluid>
@@ -17,7 +20,7 @@ const HomePage: React.FC = () => {
         <Row
           id={title}
           key={title}
-          style={i % 2 === 0 ? { backgroundColor: '#F1F2F4' } : { backgroundColor: '#E2E6E9' }}
+          style={i % 2 === 0 ? { backgroundColor: DARK_BG } : { backgroundColor: LIGHT_BG }}
         >
           <Container fluid className="home_section-container">
             <Row>
