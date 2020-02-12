@@ -8,8 +8,9 @@ const Timeline: React.FC = () => {
   return (
     <div>
       <VerticalTimeline>
-        {timelineContent.map(timelineItem => (
+        {timelineContent.map((timelineItem, i) => (
           <VerticalTimelineElement
+            key={i}
             className="timeline__timeline-element"
             date={timelineItem.dates}
             iconStyle={{

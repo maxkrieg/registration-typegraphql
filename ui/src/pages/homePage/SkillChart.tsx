@@ -101,8 +101,8 @@ const SkillChart: React.FC = () => {
       <Row className="justify-content-md-center">
         <Col sm={2}>
           <Nav variant="pills" className="flex-column" style={{ paddingTop: '70px' }}>
-            {SKILL_SECTIONS.map((section: SkillSection) => (
-              <Nav.Item style={{ textAlign: 'left' }}>
+            {SKILL_SECTIONS.map((section: SkillSection, i) => (
+              <Nav.Item style={{ textAlign: 'left' }} key={i}>
                 <Nav.Link eventKey={section.name.toLowerCase().replace(' ', '-')}>
                   {section.name}
                 </Nav.Link>
@@ -112,8 +112,8 @@ const SkillChart: React.FC = () => {
         </Col>
         <Col sm={5}>
           <Tab.Content>
-            {SKILL_SECTIONS.map((section: SkillSection) => (
-              <Tab.Pane eventKey={section.name.toLowerCase().replace(' ', '-')}>
+            {SKILL_SECTIONS.map((section: SkillSection, i) => (
+              <Tab.Pane eventKey={section.name.toLowerCase().replace(' ', '-')} key={i}>
                 <SkillRadarChart data={section.data} />
               </Tab.Pane>
             ))}

@@ -10,9 +10,14 @@ import pcLogo from './pc-logo.png'
 
 interface IconProps {
   src: string
+  url: string
 }
 
-const Icon: React.FC<IconProps> = ({ src }) => <img src={src} className="timeline__icon" />
+const Icon: React.FC<IconProps> = ({ src, url }) => (
+  <a href={url} className="timeline__icon-wrapper" target="_blank" rel="noopener noreferrer">
+    <img src={src} className="timeline__icon" alt="icon" />
+  </a>
+)
 
 interface TimelineItem {
   icon: JSX.Element
@@ -27,7 +32,7 @@ interface TimelineItem {
 
 export const timelineContent: TimelineItem[] = [
   {
-    icon: <Icon src={psLogo} />,
+    icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
     title: 'Software Engineer',
     company: 'Pluralsight',
     team: 'Cloud Environments Platform',
@@ -36,7 +41,7 @@ export const timelineContent: TimelineItem[] = [
     description: <p>As an engineer working on cloud Environments, I do cool stuff.</p>,
   },
   {
-    icon: <Icon src={psLogo} />,
+    icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
     title: 'Software Engineer, Tech Lead',
     team: 'Interactive Course Tools Experience',
     company: 'Pluralsight',
@@ -45,7 +50,7 @@ export const timelineContent: TimelineItem[] = [
     description: <p>Tech Lead for Interactive Course Tooling</p>,
   },
   {
-    icon: <Icon src={psLogo} />,
+    icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
     title: 'Software Engineer, Tech Lead',
     team: 'Skill IQ Author Experience',
     company: 'Pluralsight',
@@ -54,7 +59,7 @@ export const timelineContent: TimelineItem[] = [
     description: <p>Tech Lead for Interactive Course Tooling</p>,
   },
   {
-    icon: <Icon src={psLogo} />,
+    icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
     title: 'Software Engineer, Tech Lead',
     team: 'Skill IQ Tech Leader Experience',
     company: 'Pluralsight',
@@ -63,7 +68,7 @@ export const timelineContent: TimelineItem[] = [
     description: <p>Tech Lead for Interactive Course Tooling</p>,
   },
   {
-    icon: <Icon src={psLogo} />,
+    icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
     title: 'Software Engineer',
     team: 'Skill IQ Learner Experience',
     company: 'Pluralsight',
@@ -72,7 +77,7 @@ export const timelineContent: TimelineItem[] = [
     description: <p>Tech Lead for Interactive Course Tooling</p>,
   },
   {
-    icon: <Icon src={gaLogo} />,
+    icon: <Icon src={gaLogo} url="https://generalassemb.ly/" />,
     title: 'Student',
     team: 'Web Development Immersive',
     company: 'General Assembly',
@@ -81,7 +86,7 @@ export const timelineContent: TimelineItem[] = [
     description: <p>Foo bar foo</p>,
   },
   {
-    icon: <Icon src={ipLogo} />,
+    icon: <Icon src={ipLogo} url="https://www.iprospect.com/en/us/" />,
     title: 'Search Engine Marketing Account Lead',
     company: 'iProspect',
     location: 'Boston, MA',
@@ -89,7 +94,7 @@ export const timelineContent: TimelineItem[] = [
     description: <p>Yep</p>,
   },
   {
-    icon: <Icon src={ipLogo} />,
+    icon: <Icon src={ipLogo} url="https://www.iprospect.com/en/us/" />,
     title: 'Search Engine Marketing Account Specialist',
     company: 'iProspect',
     location: 'Boston, MA',
@@ -97,7 +102,7 @@ export const timelineContent: TimelineItem[] = [
     description: <p>Foo bar foo</p>,
   },
   {
-    icon: <Icon src={ipLogo} />,
+    icon: <Icon src={ipLogo} url="https://www.iprospect.com/en/us/" />,
     title: 'Search Engine Marketing Account Coordinator',
     company: 'iProspect',
     location: 'Boston, MA',
@@ -105,7 +110,9 @@ export const timelineContent: TimelineItem[] = [
     description: <p>Foo bar foo</p>,
   },
   {
-    icon: <Icon src={gniLogo} />,
+    icon: (
+      <Icon src={gniLogo} url="https://www.linkedin.com/company/newsimaging-inc-dba-gni-/about/" />
+    ),
     title: 'Data Analyst',
     company: 'Global News Intelligence (GNI)',
     location: 'Boston, MA',
@@ -113,7 +120,7 @@ export const timelineContent: TimelineItem[] = [
     description: <p>Foo bar foo</p>,
   },
   {
-    icon: <Icon src={uvmLogo} />,
+    icon: <Icon src={uvmLogo} url="https://www.uvm.edu/" />,
     title: 'Student',
     team: 'B.A. in Global Studies & Spanish',
     company: 'University of Vermont',
@@ -122,7 +129,7 @@ export const timelineContent: TimelineItem[] = [
     description: <p>Foo bar foo</p>,
   },
   {
-    icon: <Icon src={sevillaLogo} />,
+    icon: <Icon src={sevillaLogo} url="https://www.us.es/" />,
     title: 'Student',
     team: 'Global Studies & Spanish',
     company: 'Universidad de Sevilla',
@@ -131,7 +138,7 @@ export const timelineContent: TimelineItem[] = [
     description: <p>Semester abroad in Sevilla, Spain</p>,
   },
   {
-    icon: <Icon src={nolsLogo} />,
+    icon: <Icon src={nolsLogo} url="https://www.nols.edu/en/" />,
     title: 'Student',
     team: 'Wilderness Expedition Leadership',
     company: 'National Outdoor Leadership School (NOLS)',
@@ -140,7 +147,7 @@ export const timelineContent: TimelineItem[] = [
     description: <p>Semester in Chilean Patagonia</p>,
   },
   {
-    icon: <Icon src={pcLogo} />,
+    icon: <Icon src={pcLogo} url="https://www.providence.edu/" />,
     title: 'Student',
     team: 'Global Studies & Spanish',
     company: 'Providence College',

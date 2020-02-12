@@ -1,4 +1,4 @@
-.timeline__icon {
+.timeline__icon-wrapper {
   display: block;
   width: 36px;
   height: 36px;
@@ -7,6 +7,12 @@
   top: 50%;
   margin-left: -18px;
   margin-top: -18px;
+}
+
+.timeline__icon {
+  display: block;
+  width: 36px;
+  height: 36px;
 }
 
 .timeline__timeline-element .vertical-timeline-element-date {
