@@ -1,12 +1,12 @@
 import React from 'react'
-import psLogo from './ps-logo.png'
-import ipLogo from './ip-logo.png'
-import gniLogo from './gni-logo.png'
-import gaLogo from './ga-logo.png'
-import uvmLogo from './uvm-logo.png'
-import sevillaLogo from './sevilla-logo.png'
-import nolsLogo from './nols-logo.png'
-import pcLogo from './pc-logo.png'
+import psLogo from './logos/ps-logo.png'
+import ipLogo from './logos/ip-logo.png'
+import gniLogo from './logos/gni-logo.png'
+import gaLogo from './logos/ga-logo.png'
+import uvmLogo from './logos/uvm-logo.png'
+import sevillaLogo from './logos/sevilla-logo.png'
+import nolsLogo from './logos/nols-logo.png'
+import pcLogo from './logos/pc-logo.png'
 
 interface IconProps {
   src: string
@@ -38,16 +38,48 @@ export const timelineContent: TimelineItem[] = [
     team: 'Cloud Environments Platform',
     location: 'Salt Lake City, UT & Boston, MA',
     dates: 'Dec 2019 - Present',
-    description: <p>As an engineer working on cloud Environments, I do cool stuff.</p>,
+    description: (
+      <p className="timeline__element-description">
+        <ul>
+          <li>
+            Management of Kubernetes cluster that services other hands-on learner experiences such
+            as Interactive Courses, Labs, and Projects
+          </li>
+          <li>
+            Service that provides safe and secure execution environments (Docker containers) for
+            learners and authors
+          </li>
+          <li>
+            <strong>Technologies:</strong> Kubernetes, Docker, Node.js, Typescript, NestJS, GraphQL
+          </li>
+        </ul>
+      </p>
+    ),
   },
   {
     icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
     title: 'Software Engineer, Tech Lead',
-    team: 'Interactive Course Tools Experience',
+    team: 'Interactive Course Author Experience',
     company: 'Pluralsight',
     location: 'Salt Lake City, UT & Boston, MA',
     dates: 'Nov 2018 – Dec 2019',
-    description: <p>Tech Lead for Interactive Course Tooling</p>,
+    description: (
+      <p className="timeline__element-description">
+        <ul>
+          <li>
+            Led technical discovery, design, and creation of new Author experience for Interactive
+            Courses
+          </li>
+          <li>
+            Trained team in LEAN practices, optimization for flow efficiency, and mob programming
+          </li>
+          <li>
+            <strong>Technologies:</strong> Node.js, React, Apollo GraphQL, Typescript, Docker,
+            PostgreSQL
+          </li>
+        </ul>
+      </p>
+    ),
   },
   {
     icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
@@ -56,7 +88,18 @@ export const timelineContent: TimelineItem[] = [
     company: 'Pluralsight',
     location: 'Salt Lake City, UT & Boston, MA',
     dates: 'Jan 2018 – Nov 2018',
-    description: <p>Tech Lead for Interactive Course Tooling</p>,
+    description: (
+      <p className="timeline__element-description">
+        <ul>
+          <li>Led team in rebuild of Skill IQ Author application from legacy codebase</li>
+          <li>Architected and built internal dashboard for Skill IQ data analytics</li>
+          <li>Transitioned legacy codebase from Python 2 to Python 3</li>
+          <li>
+            <strong>Technologies:</strong> Python, React, Sqlalchemy, PostgreSQL
+          </li>
+        </ul>
+      </p>
+    ),
   },
   {
     icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
@@ -65,7 +108,20 @@ export const timelineContent: TimelineItem[] = [
     company: 'Pluralsight',
     location: 'Salt Lake City, UT & Boston, MA',
     dates: 'Feb 2017 – Feb 2018',
-    description: <p>Tech Lead for Interactive Course Tooling</p>,
+    description: (
+      <p className="timeline__element-description">
+        <ul>
+          <li>Created Skill IQ data analytics dashboard for customers</li>
+          <li>Delivered 3 premium features than enabled higher price points and increased sales</li>
+          <li>
+            Built asynchronous data aggregation and calculation service and calculation service
+          </li>
+          <li>
+            <strong>Technologies:</strong> Python, React, Sqlalchemy, PostgreSQL
+          </li>
+        </ul>
+      </p>
+    ),
   },
   {
     icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
@@ -74,7 +130,21 @@ export const timelineContent: TimelineItem[] = [
     company: 'Pluralsight',
     location: 'Salt Lake City, UT & Boston, MA',
     dates: 'July 2015 – Feb 2017',
-    description: <p>Tech Lead for Interactive Course Tooling</p>,
+    description: (
+      <p className="timeline__element-description">
+        <ul>
+          <li>Led front end development of brand new Skill IQ learner experience in React</li>
+          <li>
+            Evolved CI/CD practices and pipelines using a number of tools (Jenkins, Ansible, Puppet,
+            etc)
+          </li>
+          <li>Transitioned legacy codebase from Python 2 to Python 3</li>
+          <li>
+            <strong>Technologies:</strong> Python, React, Sqlalchemy, PostgreSQL
+          </li>
+        </ul>
+      </p>
+    ),
   },
   {
     icon: <Icon src={gaLogo} url="https://generalassemb.ly/" />,

@@ -18,3 +18,8 @@
 .timeline__timeline-element .vertical-timeline-element-date {
   text-align: left;
 }
+
+.timeline__element-description {
+  text-align: left;
+  margin: 0 !important;
+}
