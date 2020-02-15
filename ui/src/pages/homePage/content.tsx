@@ -65,7 +65,7 @@ export const sections: Section[] = [
     ),
   },
   {
-    title: 'work',
+    title: 'timeline',
     content: <Timeline />,
   },
   {

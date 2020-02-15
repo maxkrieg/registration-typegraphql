@@ -45,7 +45,15 @@ const Timeline: React.FC = () => {
               <em>{timelineItem.location}</em>
             </h6>
             <div style={{ height: '16px' }} />
-            {timelineItem.description}
+            {timelineItem.descriptionBullets && (
+              <p className="timeline__element-description">
+                <ul>
+                  {timelineItem.descriptionBullets.map((bulletText, i) => (
+                    <li key={i}>{bulletText}</li>
+                  ))}
+                </ul>
+              </p>
+            )}
           </VerticalTimelineElement>
         ))}
       </VerticalTimeline>

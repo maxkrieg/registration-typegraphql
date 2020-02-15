@@ -26,7 +26,7 @@ interface TimelineItem {
   team?: string
   location: string
   dates: string
-  description?: JSX.Element
+  descriptionBullets?: (string | JSX.Element)[]
   position?: string
 }
 
@@ -38,23 +38,13 @@ export const timelineContent: TimelineItem[] = [
     team: 'Cloud Environments Platform',
     location: 'Salt Lake City, UT & Boston, MA',
     dates: 'Dec 2019 - Present',
-    description: (
-      <p className="timeline__element-description">
-        <ul>
-          <li>
-            Management of Kubernetes cluster that services other hands-on learner experiences such
-            as Interactive Courses, Labs, and Projects
-          </li>
-          <li>
-            Service that provides safe and secure execution environments (Docker containers) for
-            learners and authors
-          </li>
-          <li>
-            <strong>Technologies:</strong> Kubernetes, Docker, Node.js, Typescript, NestJS, GraphQL
-          </li>
-        </ul>
-      </p>
-    ),
+    descriptionBullets: [
+      'Management of Kubernetes cluster that services other hands-on learner experiences such as Interactive Courses, Labs, and Projects',
+      'Service that provides safe and secure execution environments (Docker containers) for learners and authors',
+      <span>
+        <strong>Technologies:</strong> Kubernetes, Docker, Node.js, Typescript, NestJS, GraphQL
+      </span>,
+    ],
   },
   {
     icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
@@ -63,23 +53,14 @@ export const timelineContent: TimelineItem[] = [
     company: 'Pluralsight',
     location: 'Salt Lake City, UT & Boston, MA',
     dates: 'Nov 2018 – Dec 2019',
-    description: (
-      <p className="timeline__element-description">
-        <ul>
-          <li>
-            Led technical discovery, design, and creation of new Author experience for Interactive
-            Courses
-          </li>
-          <li>
-            Trained team in LEAN practices, optimization for flow efficiency, and mob programming
-          </li>
-          <li>
-            <strong>Technologies:</strong> Node.js, React, Apollo GraphQL, Typescript, Docker,
-            PostgreSQL
-          </li>
-        </ul>
-      </p>
-    ),
+    descriptionBullets: [
+      'Led technical discovery, design, and creation of new Author experience for Interactive Courses',
+      'Trained team in LEAN practices, optimization for flow efficiency, and mob programming',
+      <span>
+        <strong>Technologies:</strong> Node.js, React, Apollo GraphQL, Typescript, Docker,
+        PostgreSQL
+      </span>,
+    ],
   },
   {
     icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
@@ -88,18 +69,14 @@ export const timelineContent: TimelineItem[] = [
     company: 'Pluralsight',
     location: 'Salt Lake City, UT & Boston, MA',
     dates: 'Jan 2018 – Nov 2018',
-    description: (
-      <p className="timeline__element-description">
-        <ul>
-          <li>Led team in rebuild of Skill IQ Author application from legacy codebase</li>
-          <li>Architected and built internal dashboard for Skill IQ data analytics</li>
-          <li>Transitioned legacy codebase from Python 2 to Python 3</li>
-          <li>
-            <strong>Technologies:</strong> Python, React, Sqlalchemy, PostgreSQL
-          </li>
-        </ul>
-      </p>
-    ),
+    descriptionBullets: [
+      'Led team in rebuild of Skill IQ Author application from legacy codebase',
+      'Architected and built internal dashboard for Skill IQ data analytics',
+      'Transitioned legacy codebase from Python 2 to Python 3',
+      <span>
+        <strong>Technologies:</strong> Python, React, Sqlalchemy, PostgreSQL
+      </span>,
+    ],
   },
   {
     icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
@@ -108,20 +85,14 @@ export const timelineContent: TimelineItem[] = [
     company: 'Pluralsight',
     location: 'Salt Lake City, UT & Boston, MA',
     dates: 'Feb 2017 – Feb 2018',
-    description: (
-      <p className="timeline__element-description">
-        <ul>
-          <li>Created Skill IQ data analytics dashboard for customers</li>
-          <li>Delivered 3 premium features than enabled higher price points and increased sales</li>
-          <li>
-            Built asynchronous data aggregation and calculation service and calculation service
-          </li>
-          <li>
-            <strong>Technologies:</strong> Python, React, Sqlalchemy, PostgreSQL
-          </li>
-        </ul>
-      </p>
-    ),
+    descriptionBullets: [
+      'Created Skill IQ data analytics dashboard for customers',
+      'Delivered 3 premium features than enabled higher price points and increased sales',
+      'Built asynchronous data aggregation and calculation service and calculation service',
+      <span>
+        <strong>Technologies:</strong> Python, React, Sqlalchemy, PostgreSQL
+      </span>,
+    ],
   },
   {
     icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
@@ -130,21 +101,14 @@ export const timelineContent: TimelineItem[] = [
     company: 'Pluralsight',
     location: 'Salt Lake City, UT & Boston, MA',
     dates: 'July 2015 – Feb 2017',
-    description: (
-      <p className="timeline__element-description">
-        <ul>
-          <li>Led front end development of brand new Skill IQ learner experience in React</li>
-          <li>
-            Evolved CI/CD practices and pipelines using a number of tools (Jenkins, Ansible, Puppet,
-            etc)
-          </li>
-          <li>Transitioned legacy codebase from Python 2 to Python 3</li>
-          <li>
-            <strong>Technologies:</strong> Python, React, Sqlalchemy, PostgreSQL
-          </li>
-        </ul>
-      </p>
-    ),
+    descriptionBullets: [
+      'Led front end development of brand new Skill IQ learner experience in React',
+      'Evolved CI/CD practices and pipelines using a number of tools (Jenkins, Ansible, Puppet, etc)',
+      'Transitioned legacy codebase from Python 2 to Python 3',
+      <span>
+        <strong>Technologies:</strong> Python, React, Sqlalchemy, PostgreSQL
+      </span>,
+    ],
   },
   {
     icon: <Icon src={gaLogo} url="https://generalassemb.ly/" />,
@@ -153,7 +117,13 @@ export const timelineContent: TimelineItem[] = [
     company: 'General Assembly',
     location: 'Boston, MA',
     dates: 'Apr 2015 – July 2015',
-    description: <p>Foo bar foo</p>,
+    descriptionBullets: [
+      '3-month full time immersive course where I learned best practices for web application architecture, front-end and back end development',
+      <span>
+        <strong>Technologies:</strong> JavaScript, Node.js, Express, Angular, jQuery, HTML, CSS,
+        MongoDB, Ruby on Rails, PostgreSQL
+      </span>,
+    ],
   },
   {
     icon: <Icon src={ipLogo} url="https://www.iprospect.com/en/us/" />,
@@ -161,7 +131,11 @@ export const timelineContent: TimelineItem[] = [
     company: 'iProspect',
     location: 'Boston, MA',
     dates: 'Jan 2015 – Apr 2015',
-    description: <p>Yep</p>,
+    descriptionBullets: [
+      'Team leader of 5+ person marketing team to ensure goals of Fortune 500 e-commerce client were met efficiently',
+      'Designed advertising strategy to optimize for client-specified KPIs',
+      'Primary point of contact for client, helped develop and strengthen client-agency relationship',
+    ],
   },
   {
     icon: <Icon src={ipLogo} url="https://www.iprospect.com/en/us/" />,
@@ -169,7 +143,11 @@ export const timelineContent: TimelineItem[] = [
     company: 'iProspect',
     location: 'Boston, MA',
     dates: 'May 2014 – Dec 2014',
-    description: <p>Foo bar foo</p>,
+    descriptionBullets: [
+      'Automated data analysis reporting for 5 teams with VBA scripts, saving over 10 person hrs/wk',
+      'Managed multi-million dollar ad budget by developing spend projection tool in Excel',
+      'Redesigned strategy for a Product Listing Account, leading to +20% ROI YoY',
+    ],
   },
   {
     icon: <Icon src={ipLogo} url="https://www.iprospect.com/en/us/" />,
@@ -177,7 +155,11 @@ export const timelineContent: TimelineItem[] = [
     company: 'iProspect',
     location: 'Boston, MA',
     dates: 'Jun 2013 – Apr 2014',
-    description: <p>Foo bar foo</p>,
+    descriptionBullets: [
+      'Optimized ad campaigns by doing ata analysis of search keyword metrics (impressions, click through rate, conversion rate)',
+      'Led execution for Holiday marketing campaigns, driving YoY ROI increases in multiple ad types',
+      'Executed all client reporting of ad campaign performance and tracking against KPIs',
+    ],
   },
   {
     icon: (
@@ -187,7 +169,12 @@ export const timelineContent: TimelineItem[] = [
     company: 'Global News Intelligence (GNI)',
     location: 'Boston, MA',
     dates: 'May 2011 – Jun 2013',
-    description: <p>Foo bar foo</p>,
+    descriptionBullets: [
+      'Data analyst and consultant of open-source media content for corporate, political, and military clients',
+      'Designed analytics strategy and methodology for multiple client projects',
+      'Assisted software engineers to improve experience of web application',
+      'Managed 3-5 team members, interns and part-time staff on multiple projects',
+    ],
   },
   {
     icon: <Icon src={uvmLogo} url="https://www.uvm.edu/" />,
@@ -195,8 +182,13 @@ export const timelineContent: TimelineItem[] = [
     team: 'B.A. in Global Studies & Spanish',
     company: 'University of Vermont',
     location: 'Burlington, VT',
-    dates: 'Jun 2009 – Dec 2010',
-    description: <p>Foo bar foo</p>,
+    dates: 'Graduated Dec 2010',
+    descriptionBullets: [
+      "Interdisciplinary degree covering relationship between global politics, economics, and culture in influencing today's world",
+      'Founder of UVM Global Studies club',
+      'Opinion Columnist for The Vermont Cynic newspaper',
+      "Teacher's Assistant for Anthropology Department",
+    ],
   },
   {
     icon: <Icon src={sevillaLogo} url="https://www.us.es/" />,
@@ -205,7 +197,11 @@ export const timelineContent: TimelineItem[] = [
     company: 'Universidad de Sevilla',
     location: 'Sevilla, Spain',
     dates: 'Jan 2010 – Jun 2010',
-    description: <p>Semester abroad in Sevilla, Spain</p>,
+    descriptionBullets: [
+      'Semester abroad in Sevilla, Spain',
+      'Studies focused on politics, economics, and linguistics',
+      'All classes taught in Spanish',
+    ],
   },
   {
     icon: <Icon src={nolsLogo} url="https://www.nols.edu/en/" />,
@@ -214,14 +210,11 @@ export const timelineContent: TimelineItem[] = [
     company: 'National Outdoor Leadership School (NOLS)',
     location: 'Coyhaique, Chile',
     dates: 'Jan 2009 – Jun 2009',
-    description: <p>Semester in Chilean Patagonia</p>,
-  },
-  {
-    icon: <Icon src={pcLogo} url="https://www.providence.edu/" />,
-    title: 'Student',
-    team: 'Global Studies & Spanish',
-    company: 'Providence College',
-    location: 'Providence, RI',
-    dates: 'Sep 2006 – Dec 2008',
+    descriptionBullets: [
+      "3-month semester long program in southern Chile's Patagonia wilderness region consisting of backpacking and sea kayaking",
+      'Trained in large-group, extended backcountry expedition planning and leadership',
+      'Led group of 21 for multiple days of mountain travel and sea kayaking',
+      'Certification in Wilderness First Aid (WFA) and Leave No Trace (LNT)',
+    ],
   },
 ]
