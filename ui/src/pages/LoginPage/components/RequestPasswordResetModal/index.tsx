@@ -1,13 +1,10 @@
 import React, { useState, ChangeEvent } from 'react'
+import { Button, Modal, Form, Alert, Spinner } from 'react-bootstrap'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
-import Alert from 'react-bootstrap/Alert'
-import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
-import { isValidEmailAddress } from '../../utils/email'
-import { MutationSendResetPasswordEmailArgs } from '../../types/graphql.d'
-import Spinner from 'react-bootstrap/Spinner'
+
+import { isValidEmailAddress } from '../../../../utils/email'
+import { MutationSendResetPasswordEmailArgs } from '../../../../types/graphql.d'
 
 const SEND_RESET_PASSWORD_EMAIL = gql`
   mutation SendResetPasswordEmail($email: String!) {
@@ -81,7 +78,7 @@ const RequestPasswordResetModal: React.FC = () => {
                 type="email"
                 placeholder="Enter email"
                 isValid={isValidEmailAddress(email)}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setValidated(false)
                   setFormSubmissionError(false)
                   setEmail(e.target.value)

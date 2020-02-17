@@ -29,7 +29,7 @@ interface TimelineItem {
   position?: string
 }
 
-export const timelineContent: TimelineItem[] = [
+const timelineItems: TimelineItem[] = [
   {
     icon: <Icon src={psLogo} url="https://www.pluralsight.com/" />,
     title: 'Software Engineer',
@@ -217,3 +217,5 @@ export const timelineContent: TimelineItem[] = [
     ],
   },
 ]
+
+export default timelineItems

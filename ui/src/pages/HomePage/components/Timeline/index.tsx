@@ -1,14 +1,15 @@
 import React from 'react'
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component'
 import 'react-vertical-timeline-component/style.min.css'
-import './timeline/Timeline.css'
-import { timelineContent } from './timeline/timelineContent'
+
+import timelineItems from './content/timelineItems'
+import './index.css'
 
 const Timeline: React.FC = () => {
   return (
     <div>
       <VerticalTimeline>
-        {timelineContent.map((timelineItem, i) => (
+        {timelineItems.map((timelineItem, i) => (
           <VerticalTimelineElement
             key={i}
             className="timeline__timeline-element"
@@ -46,13 +47,11 @@ const Timeline: React.FC = () => {
             </h6>
             <div style={{ height: '16px' }} />
             {timelineItem.descriptionBullets && (
-              <p className="timeline__element-description">
-                <ul>
-                  {timelineItem.descriptionBullets.map((bulletText, i) => (
-                    <li key={i}>{bulletText}</li>
-                  ))}
-                </ul>
-              </p>
+              <ul className="timeline__element-description">
+                {timelineItem.descriptionBullets.map((bulletText, i) => (
+                  <li key={i}>{bulletText}</li>
+                ))}
+              </ul>
             )}
           </VerticalTimelineElement>
         ))}

@@ -1,11 +1,9 @@
 import React from 'react'
-import './css/HomePage.css'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image'
-import { sections } from './homePage/content'
-import banner from './homePage/zion-background.jpg'
+import { Container, Row, Col, Image } from 'react-bootstrap'
+
+import sections from './content/sections'
+import banner from './content/zion-background.jpg'
+import './index.css'
 
 const LIGHT_BG = '#F1F2F4'
 const DARK_BG = '#E2E6E9'

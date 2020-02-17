@@ -1,31 +1,38 @@
 import React from 'react'
-import SkillChart from './SkillChart'
-import Timeline from './Timeline'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Image } from 'react-bootstrap'
+import GitHubButton from 'react-github-btn'
+
+import SkillChart from '../components/SkillChart'
+import Timeline from '../components/Timeline'
+import maxRowanPhoto from './max-rowan.jpg'
 
 interface Section {
   title: string
   content: JSX.Element
 }
 
-export const sections: Section[] = [
+const sections: Section[] = [
   {
     title: 'about',
     content: (
-      <p>
-        I'm a passionate Software Engineer who loves to collaborate with others to solve hard
-        problems. I enjoy full-stack web development as well as Dev Ops work. I believe in{' '}
-        <a
-          href="https://en.wikipedia.org/wiki/Lean_software_development"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          lean software development
-        </a>
-        , flow efficiency, and mob programming. Outside of coding, I enjoy hiking, climbing, or
-        skiing. I'm a lifelong learner obsessed with constantly bettering myself in all facets of
-        life.
-      </p>
+      <div>
+        <Image src={maxRowanPhoto} roundedCircle style={{ height: '200px', width: '200px' }} />
+        <div style={{ height: '16px' }} />
+        <p>
+          I'm a passionate Software Engineer who loves to collaborate with others to solve hard
+          problems. I enjoy full-stack web development as well as Dev Ops work. I believe in{' '}
+          <a
+            href="https://en.wikipedia.org/wiki/Lean_software_development"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            lean software development
+          </a>
+          , flow efficiency, and mob programming. Outside of coding, I enjoy hiking, climbing, or
+          skiing. I'm a lifelong learner obsessed with constantly bettering myself in all facets of
+          life.
+        </p>
+      </div>
     ),
   },
   {
@@ -85,19 +92,25 @@ export const sections: Section[] = [
     content: (
       <>
         <p>
-          <a href="mailto: hellomaxkrieg@gmail.com">
-            <i className="fas fa-envelope" /> hellomaxkrieg@gmail.com
+          <a
+            href="https://twitter.com/MaxwellKrieg?ref_src=twsrc%5Etfw"
+            className="twitter-follow-button"
+            data-show-count="false"
+            data-size="large"
+          >
+            Follow @MaxwellKrieg
           </a>
         </p>
         <p>
-          <a href="https://twitter.com/MaxwellKrieg" target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-twitter" /> @MaxwellKrieg
-          </a>
-        </p>
-        <p>
-          <a href="https://github.com/maxkrieg" target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-github-alt"></i> @maxkrieg
-          </a>
+          <GitHubButton
+            href="https://github.com/maxkrieg"
+            data-color-scheme="no-preference: light; light: light; dark: dark;"
+            data-size="large"
+            data-show-count={true}
+            aria-label="Follow @maxkrieg on GitHub"
+          >
+            Follow @maxkrieg
+          </GitHubButton>
         </p>
         <p>
           <a
@@ -106,7 +119,7 @@ export const sections: Section[] = [
               backgroundColor: '#FC5200',
               color: '#fff',
               padding: '5px 10px 5px 30px',
-              fontSize: '11px',
+              fontSize: '13px',
               fontFamily: 'Helvetica, Arial, sans-serif',
               whiteSpace: 'nowrap',
               textDecoration: 'none',
@@ -132,3 +145,5 @@ export const sections: Section[] = [
     ),
   },
 ]
+
+export default sections

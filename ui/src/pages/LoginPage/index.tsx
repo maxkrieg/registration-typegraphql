@@ -1,17 +1,12 @@
 import React, { useState, ChangeEvent } from 'react'
-import './css/LoginPage.css'
+import { Container, Row, Col, Form, Button, Spinner, Alert } from 'react-bootstrap'
 import { RouteComponentProps, Link } from 'react-router-dom'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
 import { useMutation } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
-import Alert from 'react-bootstrap/Alert'
-import Spinner from 'react-bootstrap/Spinner'
-import { isValidEmailAddress } from '../utils/email'
-import RequestPasswordResetModal from './loginPage/RequestPasswordResetModal'
+
+import { isValidEmailAddress } from '../../utils/email'
+import RequestPasswordResetModal from './components/RequestPasswordResetModal'
+import './index.css'
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -59,7 +54,6 @@ const LoginPage: React.FC<RouteComponentProps> = props => {
       },
     })
   }
-
   return (
     <Container className="login_container">
       <Row className="justify-content-md-center">

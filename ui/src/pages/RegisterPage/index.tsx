@@ -1,16 +1,11 @@
 import React, { useState, useEffect, ChangeEvent } from 'react'
-import './css/RegisterPage.css'
+import { Container, Row, Col, Form, Button, Spinner, Alert } from 'react-bootstrap'
 import { RouteComponentProps, Link } from 'react-router-dom'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Spinner from 'react-bootstrap/Spinner'
-import Alert from 'react-bootstrap/Alert'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
-import { isValidEmailAddress } from '../utils/email'
+
+import { isValidEmailAddress } from '../../utils/email'
+import './index.css'
 
 const REGISTER = gql`
   mutation Register($data: RegisterInput!) {

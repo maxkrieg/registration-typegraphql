@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
-import './css/UserPage.css'
+import { Spinner, ListGroup, Alert, Button } from 'react-bootstrap'
 import { RouteComponentProps } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
-import { User } from '../types/graphql.d'
 
-import Spinner from 'react-bootstrap/Spinner'
-import ListGroup from 'react-bootstrap/ListGroup'
-import Alert from 'react-bootstrap/Alert'
-import Button from 'react-bootstrap/Button'
-import UserPageWrapper from './userPage/UserPageWrapper'
+import { User } from '../../types/graphql.d'
+import UserPageWrapper from './components/UserPageWrapper'
+import './index.css'
 
 const GET_USER_INFO = gql`
   query GetUserInfo {

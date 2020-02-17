@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { Container, Row, Col, Alert, Spinner } from 'react-bootstrap'
 import { RouteComponentProps, useParams, Link } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Alert from 'react-bootstrap/Alert'
-import Spinner from 'react-bootstrap/Spinner'
-import { MutationConfirmUserArgs } from '../types/graphql.d'
+
+import { MutationConfirmUserArgs } from '../../types/graphql.d'
 
 const CONFIRM_USER = gql`
   mutation ConfirmUser($token: String!) {

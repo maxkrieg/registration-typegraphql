@@ -1,16 +1,11 @@
 import React, { useState, useEffect, ChangeEvent } from 'react'
-import './css/RegisterPage.css'
+import { Container, Row, Col, Form, Button, Spinner, Alert } from 'react-bootstrap'
 import { RouteComponentProps, useParams } from 'react-router-dom'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Spinner from 'react-bootstrap/Spinner'
-import Alert from 'react-bootstrap/Alert'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
-import { MutationChangePasswordArgs } from '../types/graphql.d'
+
+import { MutationChangePasswordArgs } from '../../types/graphql.d'
+import './index.css'
 
 const CHANGE_PASSWORD = gql`
   mutation ChangePassword($data: ChangePasswordInput!) {
@@ -71,7 +66,7 @@ const ResetPasswordPage: React.FC<RouteComponentProps> = props => {
   }
 
   return (
-    <Container className="register_container">
+    <Container className="reset-password_container">
       <Row className="justify-content-md-center">
         <Col xs lg="6">
           <h2>Reset your password</h2>

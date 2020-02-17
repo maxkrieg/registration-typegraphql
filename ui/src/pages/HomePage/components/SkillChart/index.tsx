@@ -52,7 +52,7 @@ const SKILL_SECTIONS: SkillSection[] = [
     name: 'Data',
     data: [
       { name: 'PostgreSQL', value: 90 },
-      { name: 'MonogoDB', value: 70 },
+      { name: 'MongoDB', value: 70 },
       { name: 'RabbitMQ', value: 65 },
       { name: 'Memcached', value: 70 },
       { name: 'Redis', value: 65 },

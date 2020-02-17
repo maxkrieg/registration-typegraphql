@@ -1,15 +1,12 @@
 import React from 'react'
-import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
+import { Nav, Navbar as NavbarRB, Spinner, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import NavbarRB from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
+import { gql } from 'apollo-boost'
 
-import { sections } from '../pages/homePage/content'
+import sections from '../pages/HomePage/content/sections'
 import { GET_USER_INFO } from '../shared/queries'
 import { User } from '../types/graphql.d'
-import Button from 'react-bootstrap/Button'
-import Spinner from 'react-bootstrap/Spinner'
-import { gql } from 'apollo-boost'
 
 const LOGOUT = gql`
   mutation Logout {
