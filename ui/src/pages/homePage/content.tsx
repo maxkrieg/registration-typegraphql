@@ -99,6 +99,35 @@ export const sections: Section[] = [
             <i className="fab fa-github-alt"></i> @maxkrieg
           </a>
         </p>
+        <p>
+          <a
+            style={{
+              display: 'inlineBlock',
+              backgroundColor: '#FC5200',
+              color: '#fff',
+              padding: '5px 10px 5px 30px',
+              fontSize: '11px',
+              fontFamily: 'Helvetica, Arial, sans-serif',
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: '10px center',
+              borderRadius: '3px',
+              backgroundImage: "url('http://badges.strava.com/logo-strava-echelon.png')",
+            }}
+            href="http://strava.com/athletes/31447476"
+            target="_clean"
+          >
+            Follow me on
+            <img
+              src="http://badges.strava.com/logo-strava.png"
+              alt="Strava"
+              style={{ marginLeft: '2px', verticalAlign: 'textBottom' }}
+              height={13}
+              width={51}
+            />
+          </a>
+        </p>
       </>
     ),
   },

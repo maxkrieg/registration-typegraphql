@@ -6,7 +6,6 @@ import gaLogo from './logos/ga-logo.png'
 import uvmLogo from './logos/uvm-logo.png'
 import sevillaLogo from './logos/sevilla-logo.png'
 import nolsLogo from './logos/nols-logo.png'
-import pcLogo from './logos/pc-logo.png'
 
 interface IconProps {
   src: string
