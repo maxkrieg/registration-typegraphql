@@ -16,12 +16,13 @@ const HomePage: React.FC = () => {
       </Row>
       {sections.map(({ title, content }, i) => (
         <Row
+          noGutters
           id={title}
           key={title}
           style={i % 2 === 0 ? { backgroundColor: DARK_BG } : { backgroundColor: LIGHT_BG }}
         >
           <Container fluid className="home_section-container">
-            <Row>
+            <Row noGutters>
               <Col>
                 <h2>{title}</h2>
                 {content}

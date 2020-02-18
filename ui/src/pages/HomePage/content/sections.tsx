@@ -18,7 +18,7 @@ const sections: Section[] = [
       <div>
         <Image src={maxRowanPhoto} roundedCircle style={{ height: '200px', width: '200px' }} />
         <div style={{ height: '16px' }} />
-        <p>
+        <p style={{ padding: '0 10%' }}>
           I'm a passionate Software Engineer who loves to collaborate with others to solve hard
           problems. I enjoy full-stack web development as well as Dev Ops work. I believe in{' '}
           <a
@@ -42,7 +42,7 @@ const sections: Section[] = [
         <Container fluid>
           <Row className="justify-content-md-center">
             <Col sm={12}>
-              <p>
+              <p style={{ padding: '0 10%' }}>
                 The reason I enjoy Software Development is because{' '}
                 <strong>
                   I love to <em>learn</em>
@@ -52,7 +52,7 @@ const sections: Section[] = [
                 circumstances call for different technologies.
               </p>
               <div style={{ height: '20px' }} />
-              <p>
+              <p style={{ padding: '0 10%' }}>
                 The majority of my current programming skills lie in <strong>JavaScript</strong> and{' '}
                 <strong>Python</strong>. I enjoy <strong>React.js</strong> on the front end and{' '}
                 <strong>Node.js</strong> on the back end. I have been using{' '}
