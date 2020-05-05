@@ -35,11 +35,11 @@ const timelineItems: TimelineItem[] = [
     title: 'Software Engineer',
     company: 'Pluralsight',
     team: 'Cloud Environments Platform',
-    location: 'Salt Lake City, UT & Boston, MA',
+    location: 'Salt Lake City, UT',
     dates: 'Dec 2019 - Present',
     descriptionBullets: [
       'Management of Kubernetes cluster that services other hands-on learner experiences such as Interactive Courses, Labs, and Projects',
-      'Service that provides safe and secure execution environments (Docker containers) for learners and authors',
+      'Development of service that provides safe and secure execution environments (Docker containers) for learners and authors',
       <span>
         <strong>Technologies:</strong> Kubernetes, Docker, Node.js, Typescript, NestJS, GraphQL
       </span>,
@@ -53,8 +53,9 @@ const timelineItems: TimelineItem[] = [
     location: 'Salt Lake City, UT & Boston, MA',
     dates: 'Nov 2018 – Dec 2019',
     descriptionBullets: [
-      'Led technical discovery, design, and creation of new Author experience for Interactive Courses',
+      'Led technical discovery, architectural design, and creation of new Author experience for Interactive Courses',
       'Trained team in LEAN practices, optimization for flow efficiency, and mob programming',
+      'Built embeddable "smart" React component for use by other learner experiences',
       <span>
         <strong>Technologies:</strong> Node.js, React, Apollo GraphQL, Typescript, Docker,
         PostgreSQL
@@ -85,9 +86,9 @@ const timelineItems: TimelineItem[] = [
     location: 'Salt Lake City, UT & Boston, MA',
     dates: 'Feb 2017 – Feb 2018',
     descriptionBullets: [
-      'Created Skill IQ data analytics dashboard for customers',
+      'Created Skill IQ data analytics experience for customers',
       'Delivered 3 premium features than enabled higher price points and increased sales',
-      'Built asynchronous data aggregation and calculation service and calculation service',
+      'Built asynchronous data aggregation and calculation service',
       <span>
         <strong>Technologies:</strong> Python, React, Sqlalchemy, PostgreSQL
       </span>,
@@ -155,7 +156,7 @@ const timelineItems: TimelineItem[] = [
     location: 'Boston, MA',
     dates: 'Jun 2013 – Apr 2014',
     descriptionBullets: [
-      'Optimized ad campaigns by doing ata analysis of search keyword metrics (impressions, click through rate, conversion rate)',
+      'Optimized ad campaigns by doing analysis of search keyword metrics (impressions, click through rate, conversion rate)',
       'Led execution for Holiday marketing campaigns, driving YoY ROI increases in multiple ad types',
       'Executed all client reporting of ad campaign performance and tracking against KPIs',
     ],
