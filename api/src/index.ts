@@ -12,8 +12,13 @@ import redis from './redis'
 import { requestLogger } from './middleware/requestLogger'
 import { ErrorInterceptor } from './middleware/errors'
 
-const PORT = process.env.PORT
+const SESSION_COOKIE_NAME = 'qid'
+const SESSION_SECRET = process.env.SESSION_SECRET || ''
 const PATH = '/graphql'
+const isProduction = process.env.NODE_ENV === 'production'
+const HOST = process.env.HOST
+const PORT = process.env.PORT
+const SERVER_ADDRESS = `${HOST}:${PORT}`
 
 const main = async () => {
   await createConnection()
@@ -33,7 +38,7 @@ const main = async () => {
   app.use(
     cors({
       credentials: true,
-      origin: 'http://localhost:3000',
+      origin: SERVER_ADDRESS,
     }),
   )
 
@@ -41,13 +46,13 @@ const main = async () => {
   app.use(
     session({
       store: new RedisStore({ client: redis as any }),
-      name: 'qid',
-      secret: process.env.SESSION_SECRET || '',
+      name: SESSION_COOKIE_NAME,
+      secret: SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: isProduction,
         maxAge: 1000 * 60 * 60 * 24 * 7 * 365, // 7 years
       },
     }),
@@ -58,12 +63,12 @@ const main = async () => {
     path: PATH,
     cors: {
       origin: true,
-      allowedHeaders: ['Authorization', 'Content-Type', 'http://localhost:3000'],
+      allowedHeaders: ['Authorization', 'Content-Type', SERVER_ADDRESS],
     },
   })
 
   app.listen(PORT, () => {
-    console.log(`🚀 Server start at http://localhost:${PORT}${server.graphqlPath} 🚀`)
+    console.log(`🚀 Server start at ${SERVER_ADDRESS}${server.graphqlPath} 🚀`)
   })
 }
 
