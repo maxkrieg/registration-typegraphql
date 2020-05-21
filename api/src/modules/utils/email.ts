@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer'
 import uuid from 'uuid'
 import redis from '../../redis'
+import Mail from 'nodemailer/lib/mailer'
 
 interface MailOptions {
   from: string
@@ -10,26 +11,36 @@ interface MailOptions {
   html: string
 }
 
+let emailAccount: nodemailer.TestAccount | null = null
+const getEmailAccount = async (): Promise<nodemailer.TestAccount> => {
+  if (emailAccount === null) {
+    emailAccount = await nodemailer.createTestAccount()
+  }
+  return emailAccount
+}
+
+let emailTransporter: Mail | null = null
+const getEmailTransporter = (account: nodemailer.TestAccount): Mail => {
+  if (emailTransporter === null) {
+    emailTransporter = nodemailer.createTransport({
+      host: 'smtp.ethereal.email',
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: account.user, // generated ethereal user
+        pass: account.pass, // generated ethereal password
+      },
+    })
+  }
+  return emailTransporter
+}
+
 const sendEmail = async (mailOptions: MailOptions) => {
-  const account = await nodemailer.createTestAccount()
-
-  // create reusable transporter object using the default SMTP transport
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: account.user, // generated ethereal user
-      pass: account.pass, // generated ethereal password
-    },
-  })
-
-  // send mail with defined transport object
-  const info = await transporter.sendMail(mailOptions)
-
-  console.log('Message sent: %s', info.messageId)
-  // Preview only available when sending through an Ethereal account
-  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
+  const account = await getEmailAccount()
+  const transporter = getEmailTransporter(account)
+  const result = await transporter.sendMail(mailOptions)
+  console.log('Message sent: %s', result.messageId)
+  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(result))
 }
 
 export const sendResetPasswordEmail = async (userId: number, userEmail: string) => {
