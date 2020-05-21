@@ -46,8 +46,7 @@ services:
   ui:
     build:
       context: ./ui
-    environment:
-      NODE_ENV: development
+    env_file: ./ui/config/.env.development
     ports:
       - 3000:3000
     depends_on:

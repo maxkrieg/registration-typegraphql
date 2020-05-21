@@ -7,9 +7,11 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
+const API_SERVER_URI = process.env.REACT_APP_API_SERVER_URI
+
 const renderApp = () => {
   const client = new ApolloClient({
-    uri: 'http://localhost:4000/graphql',
+    uri: API_SERVER_URI,
     credentials: 'include',
     fetchOptions: {
       credentials: 'include',
