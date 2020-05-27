@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, Navbar as NavbarRB, Spinner, Button } from 'react-bootstrap'
+import { Nav, Navbar as NavbarRB, Spinner, Button, Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
@@ -18,17 +18,17 @@ const Navbar: React.FC = () => {
   const client = useApolloClient()
   const { data, loading: userInfoLoading } = useQuery<{ user: User }>(GET_USER_INFO)
   const [logout, { loading: logoutLoading }] = useMutation(LOGOUT, {
-    onCompleted: _ => {
+    onCompleted: (_) => {
       client.resetStore()
       window.location.replace(window.location.origin)
     },
   })
   let userNavbarText = (
     <>
-      <Nav.Link as="span">
+      <Nav.Link as="span" style={{ display: 'none' }}>
         <Link to="/login">Log In</Link>
       </Nav.Link>
-      <Nav.Link as="span">
+      <Nav.Link as="span" style={{ display: 'none' }}>
         <Link to="/register">Register</Link>
       </Nav.Link>
     </>
