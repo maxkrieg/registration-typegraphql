@@ -19,7 +19,7 @@
     "typescript": "3.6.3"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.8.3",
+    "@graphql-codegen/cli": "^1.21.8",
     "@graphql-codegen/introspection": "^1.8.3",
     "@graphql-codegen/typescript": "1.8.3",
     "@graphql-codegen/typescript-operations": "^1.8.3",
